@@ -1,0 +1,22 @@
+.app-home {
+    padding: 20px 20px;
+    .app-category {
+        padding-bottom: 20px;
+        margin-top: 20px;
+        .app-category-name {
+            margin-left: 15px;
+            font-size: 22px;
+            color: #444;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+    }
+    .app-albums {
+        overflow: hidden;
+        app-album {
+            display: block;
+            float: left;
+            margin: 5px;
+        }
+    }
+}

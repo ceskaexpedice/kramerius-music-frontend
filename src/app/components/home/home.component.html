@@ -1,1 +1,19 @@
-home
+<div class="app-home" *ngIf="data.ready">
+
+
+
+<div class="app-category" *ngFor="let category of data.getTopKeywords()">
+    <div class="app-category-name">{{ category.value }}</div>
+    <div class="app-albums">
+        <app-album *ngFor="let album of data.getAlbumsByCategory('keyword', category.value)" [album]="album"></app-album>
+    </div>
+</div>
+
+<div class="app-category" *ngFor="let category of data.getTopAuthors()">
+    <div class="app-category-name">{{ category.value }}</div>
+    <div class="app-albums">
+        <app-album *ngFor="let album of data.getAlbumsByCategory('author', category.value)" [album]="album"></app-album>
+    </div>
+</div>
+
+</div>
