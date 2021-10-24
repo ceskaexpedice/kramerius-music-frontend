@@ -1,0 +1,19 @@
+.app-genre {
+    padding: 20px 20px;
+    .app-genre-name {
+        margin-left: 15px;
+        font-size: 25px;
+        color: #333;
+        font-weight: 500;
+        margin-bottom: 10px;
+        margin-top: 40px;
+    }
+    .app-albums {
+        overflow: hidden;
+        app-album {
+            display: block;
+            float: left;
+            margin: 5px;
+        }
+    }
+}

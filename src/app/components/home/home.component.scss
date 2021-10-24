@@ -9,6 +9,10 @@
             color: #444;
             font-weight: 500;
             margin-bottom: 10px;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
     .app-albums {

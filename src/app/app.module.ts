@@ -11,12 +11,16 @@ import { DataService } from './services/data-service';
 import { AlbumComponent } from './components/album/album.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { ArtistComponent } from './components/artist/artist.component';
+import { GenreComponent } from './components/genre/genre.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumComponent,
-    HomeComponent
+    HomeComponent,
+    ArtistComponent,
+    GenreComponent
   ],
   imports: [
     // CommonModule,

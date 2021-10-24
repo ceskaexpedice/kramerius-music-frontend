@@ -1,18 +1,16 @@
 <div class="app-home" *ngIf="data.ready">
 
-
-
-<div class="app-category" *ngFor="let category of data.getTopKeywords()">
-    <div class="app-category-name">{{ category.value }}</div>
+<div class="app-category" *ngFor="let category of data.getTopGenres()">
+    <a class="app-category-name" [routerLink]="['/genre', encode(category.value)]">{{ category.value }}</a>
     <div class="app-albums">
-        <app-album *ngFor="let album of data.getAlbumsByCategory('keyword', category.value)" [album]="album"></app-album>
+        <app-album *ngFor="let album of data.getAlbumsByCategory('genre', category.value, 10)" [album]="album"></app-album>
     </div>
 </div>
 
-<div class="app-category" *ngFor="let category of data.getTopAuthors()">
-    <div class="app-category-name">{{ category.value }}</div>
+<div class="app-category" *ngFor="let category of data.getTopArtists()">
+    <a class="app-category-name" [routerLink]="['/artist', encode(category.value)]">{{ category.value }}</a>
     <div class="app-albums">
-        <app-album *ngFor="let album of data.getAlbumsByCategory('author', category.value)" [album]="album"></app-album>
+        <app-album *ngFor="let album of data.getAlbumsByCategory('artist', category.value, 10)" [album]="album"></app-album>
     </div>
 </div>
 

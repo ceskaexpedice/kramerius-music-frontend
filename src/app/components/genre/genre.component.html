@@ -1,0 +1,9 @@
+<div class="app-genre" *ngIf="data.ready && genre">
+
+    <div class="app-genre-name">{{ genre }}</div>
+
+    <div class="app-albums">
+        <app-album *ngFor="let album of data.getAlbumsByCategory('genre', genre)" [album]="album"></app-album>
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+<div class="app-artist" *ngIf="data.ready && artist">
+
+    <div class="app-artist-name">{{ artist }}</div>
+
+    <div class="app-albums">
+        <app-album *ngFor="let album of data.getAlbumsByCategory('artist', artist)" [album]="album"></app-album>
+    </div>
+
+</div>

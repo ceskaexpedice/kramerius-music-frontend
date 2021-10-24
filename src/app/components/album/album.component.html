@@ -2,6 +2,6 @@
     <div class="app-thumb" [style.background-image]="thumb()">
         <mat-icon>play_arrow</mat-icon>
     </div>
-    <div class="app-title">{{ album.title }}</div>
-    <div class="app-author">{{ album.author() }}</div>
+    <div class="app-title" (click)="log()">{{ album.title }}</div>
+    <a class="app-artist" [routerLink]="['/artist', album.encodedArtist()]">{{ album.artist() }}</a>
 </div>

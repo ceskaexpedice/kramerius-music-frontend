@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api-service';
 import { DataService } from 'src/app/services/data-service';
 
 
@@ -10,12 +9,14 @@ import { DataService } from 'src/app/services/data-service';
 
 export class HomeComponent implements OnInit {
 
-  constructor(private api: ApiService, public data: DataService) { }
+  constructor(public data: DataService) { }
 
   ngOnInit() {
-    this.api.getAlbums().subscribe((result) => {
-      this.data.init(result);
-    })
+
+  }
+
+  encode(value: string): string {
+    return encodeURIComponent(value);
   }
 
 }

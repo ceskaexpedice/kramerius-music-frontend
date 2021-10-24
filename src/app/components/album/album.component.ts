@@ -29,4 +29,8 @@ export class AlbumComponent implements OnInit {
 
   }
 
+  log() {
+    console.log(this.album);
+  }
+
 }

@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Album } from '../models/album.model';
+import { ApiService } from './api-service';
 
 @Injectable()
 export class DataService {
 
   ready = false;
   albums: Album[];
-  keywords: Category[];
-  authors: Category[];
+  genres: Category[];
+  artists: Category[];
 
-  constructor() {
+  constructor(private api: ApiService) {
+    this.api.getAlbums().subscribe((result) => {
+      this.init(result);
+    });
   }
 
   init(input: any) {
@@ -17,48 +21,45 @@ export class DataService {
     this.albums = Album.fromJsonArray(input['response']['docs']);
     console.log('albums', this.albums);
 
-    // this.keywords = this.parseCategory(input, 'keywords');
-    // this.authors = this.parseCategory(input, 'facet_autor');
-
-    this.keywords = [];
-    this.authors = [];
-    const keywordMap: any = {};
-    const authorsMap: any = {};
+    this.genres = [];
+    this.artists = [];
+    const genresMap: any = {};
+    const artistsMap: any = {};
     for (const album of this.albums) {
-      for (const author of album.authors) {
-        if (authorsMap[author]) {
-          authorsMap[author].count += 1;
+      for (const artist of album.artists) {
+        if (artistsMap[artist]) {
+          artistsMap[artist].count += 1;
         } else {
           const c: Category = {
-            value: author,
+            value: artist,
             count: 1
           }
-          this.authors.push(c);
-          authorsMap[c.value] = c;
+          this.artists.push(c);
+          artistsMap[c.value] = c;
         }
       }
-      for (const keyword of album.keywords) {
-        if (keywordMap[keyword]) {
-          keywordMap[keyword].count += 1;
+      for (const genre of album.genres) {
+        if (genresMap[genre]) {
+          genresMap[genre].count += 1;
         } else {
           const c: Category = {
-            value: keyword,
+            value: genre,
             count: 1
           }
-          this.keywords.push(c);
-          keywordMap[c.value] = c;
+          this.genres.push(c);
+          genresMap[c.value] = c;
         }
       }
     }
-    this.keywords.sort((a,b) => {
+    this.genres.sort((a,b) => {
       return b.count - a.count;
     });
-    this.authors.sort((a,b) => {
+    this.artists.sort((a,b) => {
       return b.count - a.count;
     });
 
-    console.log('keywords', this.keywords);
-    console.log('authors', this.authors);
+    console.log('genres', this.genres);
+    console.log('artists', this.artists);
     this.ready = true;
   }
 
@@ -79,12 +80,12 @@ export class DataService {
   //   return categories;
   // }
 
-  getAlbumsByCategory(category: string, value: string, limit: number = 10): Album[] {
+  getAlbumsByCategory(category: string, value: string, limit: number = 100): Album[] {
     const albums: Album[] = [];
     for (const album of this.albums) {
-      if (category == 'author' && album.authors.includes(value)) {
+      if (category == 'artist' && album.artists.includes(value)) {
         albums.push(album);
-      } else if (category == 'keyword' && album.keywords.includes(value)) {
+      } else if (category == 'genre' && album.genres.includes(value)) {
         albums.push(album);
       }
       if (albums.length >= limit) {
@@ -95,21 +96,21 @@ export class DataService {
     return albums;
   }
 
-  getTopKeywords(limit: number = 10) {
+  getTopGenres(limit: number = 10) {
     const categories: Category[] = [];
     let i = 0;
-    while (i < limit && i < this.keywords.length) {
-      categories.push(this.keywords[i]);
+    while (i < limit && i < this.genres.length) {
+      categories.push(this.genres[i]);
       i++;
     }
     return categories;
   }
 
-  getTopAuthors(limit: number = 10) {
+  getTopArtists(limit: number = 10) {
     const categories: Category[] = [];
     let i = 0;
-    while (i < limit && i < this.authors.length) {
-      categories.push(this.authors[i]);
+    while (i < limit && i < this.artists.length) {
+      categories.push(this.artists[i]);
       i++;
     }
     return categories;
