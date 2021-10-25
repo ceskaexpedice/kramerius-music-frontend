@@ -1,7 +1,17 @@
-<div class="app-album">
-    <div class="app-thumb" [style.background-image]="thumb()">
-        <mat-icon>play_arrow</mat-icon>
+<div class="app-album" *ngIf="data.ready && album">
+
+<div class="app-category" *ngIf="album.genre()">
+    <div class="app-category-name">Více z <a [routerLink]="['/genre', encode(album.genre())]">{{ album.genre() }}</a></div>
+    <div class="app-albums">
+        <app-album-card *ngFor="let a of data.getAlbumsByCategory('genre', album.genre(), 10)" [album]="a"></app-album-card>
     </div>
-    <div class="app-title" (click)="log()">{{ album.title }}</div>
-    <a class="app-artist" [routerLink]="['/artist', album.encodedArtist()]">{{ album.artist() }}</a>
+</div>
+
+<div class="app-category" *ngIf="album.artist()">
+    <div class="app-category-name">Více od umělce <a [routerLink]="['/artist', encode(album.artist())]">{{ album.artist() }}</a></div>
+    <div class="app-albums">
+        <app-album-card *ngFor="let a of data.getAlbumsByCategory('artist', album.artist(), 10)" [album]="a"></app-album-card>
+    </div>
+</div>
+
 </div>

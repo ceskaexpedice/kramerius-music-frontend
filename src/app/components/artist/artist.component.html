@@ -3,7 +3,7 @@
     <div class="app-artist-name">{{ artist }}</div>
 
     <div class="app-albums">
-        <app-album *ngFor="let album of data.getAlbumsByCategory('artist', artist)" [album]="album"></app-album>
+        <app-album-card *ngFor="let album of data.getAlbumsByCategory('artist', artist)" [album]="album"></app-album-card>
     </div>
 
 </div>

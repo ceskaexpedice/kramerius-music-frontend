@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Album } from '../models/album.model';
 import { ApiService } from './api-service';
 
@@ -9,6 +10,9 @@ export class DataService {
   albums: Album[];
   genres: Category[];
   artists: Category[];
+
+  private subjectStatus = new Subject<any>();
+  subjectTransactions: any;
 
   constructor(private api: ApiService) {
     this.api.getAlbums().subscribe((result) => {
@@ -61,6 +65,7 @@ export class DataService {
     console.log('genres', this.genres);
     console.log('artists', this.artists);
     this.ready = true;
+    this.subjectStatus.next();
   }
 
   // private parseCategory(solr: any, category: string): Category[] {
@@ -115,7 +120,25 @@ export class DataService {
     }
     return categories;
   }
+
+  getAlbumByPid(pid: string): Album {
+    if (!this.albums) {
+      return null;
+    }
+    for (const album of this.albums) {
+      if (album.pid == pid) {
+        return album;
+      }
+    }
+    return null;
+  }
   
+
+  watchStatus(): Observable<any> {
+    return this.subjectStatus.asObservable();
+}
+
+
 }
 
 interface Category {

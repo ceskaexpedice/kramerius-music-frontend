@@ -18,7 +18,6 @@ export class GenreComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.genre = decodeURIComponent(params.get('genre') || '');
       console.log('genre', this.genre);
-
     });
   }
 

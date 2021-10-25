@@ -1,0 +1,65 @@
+.app-album {
+    width: 164px;
+    padding: 12px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    .app-thumb {
+        width: 140px;
+        height: 140px;    
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: contain;
+        position: relative;
+        mat-icon {
+            position: absolute;
+            display: none;
+            right: 50px;
+            background: #d941d3;
+            bottom: 50px;
+            border-radius: 50%;
+            font-size: 40px;
+            line-height: 40px;
+            width: 40px;
+            height: 40px;
+            color: #fff;
+            /* border: 1px solid #ffff; */
+        }
+    }
+    .app-title {
+        color: #444;
+        font-size: 14px;
+        line-height: 20px;
+        height: 20px;
+        overflow: hidden;
+        font-weight: 500;
+        margin-top: 4px;
+        white-space: pre-line;
+        word-break: break-all;
+    }
+    .app-artist {
+        color: #777;
+        font-size: 13px;
+        line-height: 20px;
+        height: 20px;
+        overflow: hidden;
+        white-space: pre-line;
+        word-break: break-all;
+        text-decoration: none;
+        display: block;
+        &:hover {
+            color: #111;
+            text-decoration: underline;
+        }
+    }
+    &:hover {
+        background: #eee;
+        .app-thumb {
+            mat-icon {
+                display: inline-block;
+            }
+        }
+    }
+}

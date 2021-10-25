@@ -8,19 +8,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { ApiService } from './services/api-service';
 import { DataService } from './services/data-service';
-import { AlbumComponent } from './components/album/album.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { GenreComponent } from './components/genre/genre.component';
+import { AlbumCardComponent } from './components/album-card/album-card.component';
+import { AlbumComponent } from './components/album/album.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlbumComponent,
+    AlbumCardComponent,
     HomeComponent,
     ArtistComponent,
-    GenreComponent
+    GenreComponent,
+    AlbumComponent
   ],
   imports: [
     // CommonModule,

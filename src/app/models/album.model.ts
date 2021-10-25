@@ -19,6 +19,13 @@ export class Album {
     return "";
   }
 
+  genre(): string {
+    if (this.genres.length > 0) {
+      return this.genres[0];
+    }
+    return "";
+  }
+
   encodedArtist(): string {
     return encodeURIComponent(this.artist());
   }

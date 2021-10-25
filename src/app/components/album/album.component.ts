@@ -1,36 +1,42 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Album } from 'src/app/models/album.model';
-import { ApiService } from 'src/app/services/api-service';
 import { DataService } from 'src/app/services/data-service';
 
 
 @Component({
-  selector: 'app-album',
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.scss']
 })
 
-export class AlbumComponent implements OnInit {
+export class AlbumComponent implements OnInit, OnDestroy {
 
-  @Input() album: Album;
+  pid: string;
+  album: Album;
+  private dataStatusSubscription: Subscription;
 
-  constructor(private api: ApiService, 
-    public data: DataService,
-    private _sanitizer: DomSanitizer
-    ) { }
+  constructor(public data: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.pid = params.get('pid') || "";
+      if (this.data.ready) {
+        this.album = this.data.getAlbumByPid(this.pid);
+      }
+      this.dataStatusSubscription = this.data.watchStatus().subscribe(() => {
+        this.album = this.data.getAlbumByPid(this.pid)
+      });
+      console.log('aaaa', this.data.getAlbumsByCategory('artist', this.album.artist(), 10));
+    });
   }
 
-  thumb():any {
-    const url = this.api.getThumb(this.album.pid);
-    return this._sanitizer.bypassSecurityTrustStyle(`url(${url})`);
-
+  ngOnDestroy(): void {
+    this.dataStatusSubscription.unsubscribe();
   }
 
-  log() {
-    console.log(this.album);
+  encode(value: string): string {
+    return encodeURIComponent(value);
   }
 
 }

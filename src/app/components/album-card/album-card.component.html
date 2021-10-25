@@ -1,0 +1,7 @@
+<a class="app-album" [routerLink]="['/album', album.pid]">
+    <div class="app-thumb" [style.background-image]="thumb()">
+        <mat-icon>play_arrow</mat-icon>
+    </div>
+    <div class="app-title" (click)="log()">{{ album.title }}</div>
+    <a class="app-artist" [routerLink]="['/artist', album.encodedArtist()]">{{ album.artist() }}</a>
+</a>
