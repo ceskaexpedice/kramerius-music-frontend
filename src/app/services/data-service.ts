@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Album } from '../models/album.model';
 import { Track } from '../models/track.model';
+import { Unit } from '../models/unit.model';
 import { ApiService } from './api-service';
 
 @Injectable()
@@ -89,11 +90,29 @@ export class DataService {
 
   getTracks(album: Album, callback: (track: Track[]) => void) {
     this.api.getTracks(album.pid).subscribe(response => {
+      const units:string[] = [];
       const tracks = Track.fromJsonArray(response['response']['docs']);
       for (const track of tracks) {
+        if (units.indexOf(track.unitPid) < 0) {
+          units.push(track.unitPid);
+        }
         track.album = album;
       }
-      callback(tracks);
+      if (units.length == 0) {
+        callback(tracks);
+      } else {
+        this.api.getUnits(units).subscribe((response) => {
+          const uMap: {[ key: string]: Unit } = {};
+          for (const u of response['response']['docs']) {
+            uMap[u['PID']] = Unit.fromJson(u);
+          }
+          for (const track of tracks) {
+            track.unit = uMap[track.unitPid];
+          }
+          console.log('tracks', tracks);
+          callback(tracks);
+        });
+      }
     });
   }
 

@@ -125,10 +125,23 @@
                     margin-left: 3px;
                 }
             }
-            .app-track-title {
-                font-size: 15px;
-                color: #333;
-                float: left;
+            .app-track-label {
+                display: flex;
+                .app-track-title {
+                    font-size: 15px;
+                    color: #333;
+                }
+                .app-divider {
+                    height: 4px;
+                    width: 4px;
+                    margin: 5px 8px;
+                    border-radius: 50%;
+                    background: #999;
+                    margin-top: 18px;
+                }
+                .app-track-unit {
+                    color: #777;
+                }
             }
             &:hover {
                 background-color: #e5e5e5;

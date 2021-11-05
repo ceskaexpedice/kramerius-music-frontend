@@ -7,8 +7,8 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class ApiService {
 
-  // private static apiUrl = 'https://kramerius.mzk.cz';
-  private static apiUrl = 'https://kramerius.nm.cz';
+  private static apiUrl = 'https://kramerius.mzk.cz';
+  // private static apiUrl = 'https://kramerius.nm.cz';
   // private static apiUrl = 'https://kramerius4.mlp.cz';
   // private static apiUrl = 'http://kramerius.kfbz.cz';
 
@@ -62,6 +62,16 @@ export class ApiService {
           + 'start=0'
     return this.get(path);
   }
+
+  getUnits(albumPids: string[]): Observable<any> {
+    const path = '/search/api/v5.0/search?'
+          + `q=PID:"${albumPids.join('" OR PID:"')}"&`
+          + 'fl=PID,dostupnost,dc.title&'
+          + 'rows=3000&'
+          + 'start=0'
+    return this.get(path);
+  }
+
 
   getThumb(pid: string): string {
     return `${ApiService.apiUrl}/search/api/v5.0/item/${pid}/thumb`;

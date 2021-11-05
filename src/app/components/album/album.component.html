@@ -29,7 +29,15 @@
             <mat-icon *ngIf="!player.isActive(track) || !player.playing">play_arrow</mat-icon>
             <mat-icon *ngIf="player.isActive(track) && player.playing">pause</mat-icon>
         </div>
-        <div class="app-track-title">{{ track.title }}</div>
+        <div class="app-track-label">
+            <div class="app-track-title">
+                {{ track.title }}
+            </div>
+            <ng-container *ngIf="track.unit">
+                <div class="app-divider"></div>
+                <div class="app-track-unit">{{ track.unit.title }}</div>
+            </ng-container>
+        </div>
     </div>
 </div>
 
