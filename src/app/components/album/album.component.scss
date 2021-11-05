@@ -8,15 +8,15 @@
         .app-category-name {
             margin-left: 15px;
             font-size: 20px;
-            color: #555;
+            color: #aaa;
             margin-bottom: 10px;
             a {
+                color: #ddd;
                 font-weight: 500;
                 text-decoration: none;
                 &:hover {
                     text-decoration: underline;
                 }
-                color: #333;
             }
         }
     }
@@ -46,7 +46,7 @@
             display: flex;
             .app-album-title {
                 font-size: 24px;
-                color: #222;
+                color: #ddd;
                 display: inline-block;
                 align-self: flex-end;
                 line-height: 32px;
@@ -55,16 +55,15 @@
         .app-album-bottom {
             overflow: hidden;
             font-size: 14px;
-            color: #333;
+            color: #aaa;
             margin-top: 10px;
             height: 14px;
             line-height: 14px;
             .app-album-artist {
                 float: left;
-                color: #333;
+                color: #aaa;
                 text-decoration: none;
                 &:hover {
-                    color: #111;
                     text-decoration: underline;
                 }
             }
@@ -86,16 +85,17 @@
                 cursor: pointer;
                 padding: 5px 12px 5px 8px;
                 font-size: 14px;
-                color: #fff;
                 border-radius: 4px;
                 background: #111;
                 display: inline-block;
                 display: flex;
                 align-items: center;
                 width: fit-content;
+                background: #ffbc00;
+                color: #111;
                 &:hover {
-                    color: #fff;
-                    background: #444;
+                    color: #000;
+                    background: #dfa911;
                 }
                 mat-icon {
                     margin-right: 6px;
@@ -115,7 +115,7 @@
                 float: left;      
                 .app-track-number {
                     font-size: 15px;
-                    color: #999;
+                    color: #777;
                     margin-left: 10px;
                 }
                 .mat-icon {
@@ -123,13 +123,14 @@
                     float: left;
                     margin-top: 8px;
                     margin-left: 3px;
+                    color: #ccc;
                 }
             }
             .app-track-label {
                 display: flex;
                 .app-track-title {
                     font-size: 15px;
-                    color: #333;
+                    color: #ccc;
                 }
                 .app-divider {
                     height: 4px;
@@ -140,11 +141,11 @@
                     margin-top: 18px;
                 }
                 .app-track-unit {
-                    color: #777;
+                    color: #999;
                 }
             }
             &:hover {
-                background-color: #e5e5e5;
+                background-color: #26272c;
                 .app-track-left {
                     .app-track-number {
                         display: none;
@@ -156,9 +157,9 @@
             }
             &.app-active {
                 font-weight: 700;
-                color: #000;
+                color: #fff;
                 .app-track-number {
-                    color: #000 !important;
+                    color: #fff !important;
                 }
             }
         }

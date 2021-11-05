@@ -1,11 +1,18 @@
 .app-content-wrapper {
     position: relative;
+    padding-top: 60px;
     &.app-player-visible {
         padding-bottom: 80px;
     }
     app-player {
         position: fixed;
         bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    app-navbar {
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
     }

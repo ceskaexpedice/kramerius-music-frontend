@@ -1,0 +1,22 @@
+.app-navbar {
+    height: 60px;
+    background: #131314;
+    display: flex;
+    padding-top: 12px;
+    padding-left: 20px;
+    .app-logo {
+        color: #ffbc00;
+        display: flex;
+        text-decoration: none;
+        font-size: 19px;
+        line-height: 38px;
+        mat-icon {
+            font-size: 38px;
+            width: 38px;
+            line-height: 38px;
+            width: 38px;
+            margin-right: 10px;
+        }
+    }
+}
+

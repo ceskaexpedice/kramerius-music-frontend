@@ -5,7 +5,7 @@
     cursor: pointer;
     display: block;
     text-decoration: none;
-    color: #333;
+    color: #ddd;
     .app-thumb-wrapper {
         width: 140px;
         height: 140px;   
@@ -23,19 +23,19 @@
             position: absolute;
             display: none;
             right: 50px;
-            background: #111;
+            background: #ffbc00;
             bottom: 50px;
             border-radius: 50%;
             font-size: 40px;
             line-height: 40px;
             width: 40px;
             height: 40px;
-            color: #fff;
+            color: #000;
             /* border: 1px solid #ffff; */
         }
     }
     .app-title {
-        color: #444;
+        color: #ddd;
         font-size: 14px;
         line-height: 20px;
         height: 20px;
@@ -46,7 +46,7 @@
         word-break: break-all;
     }
     .app-artist {
-        color: #777;
+        color: #aaa;
         font-size: 13px;
         line-height: 20px;
         height: 20px;
@@ -56,12 +56,12 @@
         text-decoration: none;
         display: block;
         &:hover {
-            color: #111;
+            // color: #111;
             text-decoration: underline;
         }
     }
     &:hover {
-        background: #eee;
+        background: #26272c;
         .app-thumb {
             mat-icon {
                 display: inline-block;

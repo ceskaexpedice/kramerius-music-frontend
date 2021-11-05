@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Track } from '../models/track.model';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ApiService {

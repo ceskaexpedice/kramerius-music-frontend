@@ -16,6 +16,7 @@ import { AlbumCardComponent } from './components/album-card/album-card.component
 import { AlbumComponent } from './components/album/album.component';
 import { PlayerService } from './services/player-service';
 import { PlayerComponent } from './components/player/player.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PlayerComponent } from './components/player/player.component';
     ArtistComponent,
     GenreComponent,
     AlbumComponent,
-    PlayerComponent
+    PlayerComponent,
+    NavbarComponent
   ],
   imports: [
     // CommonModule,
