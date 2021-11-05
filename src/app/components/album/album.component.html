@@ -1,16 +1,51 @@
 <div class="app-album" *ngIf="data.ready && album">
 
-<div class="app-category" *ngIf="album.genre()">
-    <div class="app-category-name">Více z <a [routerLink]="['/genre', encode(album.genre())]">{{ album.genre() }}</a></div>
-    <div class="app-albums">
-        <app-album-card *ngFor="let a of data.getAlbumsByCategory('genre', album.genre(), 10)" [album]="a"></app-album-card>
+
+<div class="app-album-header">
+    <div class="app-album-image">
+        <img [src]="getImage()">
+    </div>
+    <div class="app-album-title-wrapper">
+        <div class="app-album-title">{{ album.title }}</div>
+    </div>
+    <div class="app-album-bottom">
+        <a [routerLink]="['/artist', encode(album.artist())]" class="app-album-artist">{{ album.artist() }}</a>
+        <ng-container *ngIf="album.date">
+            <div class="app-divider"></div>
+            <div class="app-album-date">{{ album.date }}</div>
+        </ng-container>
+    </div>
+    <div class="app-actions">
+        <div class="app-button-play">
+            <mat-icon>play_arrow</mat-icon>
+            Přehrát</div>
     </div>
 </div>
 
-<div class="app-category" *ngIf="album.artist()">
+<div class="app-tracks">
+    <div class="app-track" *ngFor="let track of tracks; let index = index;">
+        <div class="app-track-left">
+            <div class="app-track-number">{{ index + 1 }}</div>
+            <mat-icon>play_arrow</mat-icon>
+        </div>
+        <div class="app-track-title">{{ track.title }}</div>
+    </div>
+</div>
+
+
+
+
+<div class="app-category" *ngIf="album.genre() && albumsByGenre.length > 0">
+    <div class="app-category-name">Více z <a [routerLink]="['/genre', encode(album.genre())]">{{ album.genre() }}</a></div>
+    <div class="app-albums">
+        <app-album-card *ngFor="let a of albumsByGenre" [album]="a"></app-album-card>
+    </div>
+</div>
+
+<div class="app-category" *ngIf="album.artist() && albumsByArtist.length > 0">
     <div class="app-category-name">Více od umělce <a [routerLink]="['/artist', encode(album.artist())]">{{ album.artist() }}</a></div>
     <div class="app-albums">
-        <app-album-card *ngFor="let a of data.getAlbumsByCategory('artist', album.artist(), 10)" [album]="a"></app-album-card>
+        <app-album-card *ngFor="let a of albumsByArtist" [album]="a"></app-album-card>
     </div>
 </div>
 

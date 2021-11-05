@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Track } from '../models/track.model';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ApiService {
@@ -44,6 +46,18 @@ export class ApiService {
           // + 'facet.mincount=1&'
           // + 'facet.field=keywords&'
           // + 'facet.field=facet_autor&'
+          + 'rows=3000&'
+          + 'start=0';
+    return this.get(path);
+  }
+
+
+  getTracks(albumPid: string): Observable<any> {
+    const path = '/search/api/v5.0/search?'
+          + `q=root_pid:"${albumPid}"&`
+          + 'fq=fedora.model:track'
+          + '&'
+          + 'fl=PID,dostupnost,dc.title,model_path,pid_path&'
           + 'rows=3000&'
           + 'start=0'
     return this.get(path);

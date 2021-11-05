@@ -6,9 +6,15 @@
     display: block;
     text-decoration: none;
     color: #333;
-    .app-thumb {
+    .app-thumb-wrapper {
         width: 140px;
-        height: 140px;    
+        height: 140px;   
+        // padding: 4px;
+        // background-color: #111;
+    }
+    .app-thumb {
+        width: 100%;
+        height: 100%;    
         background-repeat: no-repeat;
         background-position: top center;
         background-size: contain;
@@ -17,7 +23,7 @@
             position: absolute;
             display: none;
             right: 50px;
-            background: #d941d3;
+            background: #111;
             bottom: 50px;
             border-radius: 50%;
             font-size: 40px;

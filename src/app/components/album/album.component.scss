@@ -1,5 +1,5 @@
 .app-album {
-    padding: 20px 20px;
+    padding: 10px 10px;
     .app-category {
         padding-bottom: 20px;
         margin-top: 20px;
@@ -24,6 +24,120 @@
             display: block;
             float: left;
             margin: 5px;
+        }
+    }
+    .app-album-header {
+        padding: 20px;
+        overflow: hidden;
+        .app-album-image {
+            width: 250px;
+            height: 250px;
+            margin-right: 26px;
+            float: left;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .app-album-title-wrapper {
+            height: 180px;
+            display: flex;
+            .app-album-title {
+                font-size: 24px;
+                color: #222;
+                display: inline-block;
+                align-self: flex-end;
+                line-height: 32px;
+            }
+        }
+        .app-album-bottom {
+            overflow: hidden;
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
+            height: 14px;
+            line-height: 14px;
+            .app-album-artist {
+                float: left;
+                color: #333;
+                text-decoration: none;
+                &:hover {
+                    color: #111;
+                    text-decoration: underline;
+                }
+            }
+            .app-divider {
+                float: left;
+                height: 4px;
+                width: 4px;
+                margin: 5px 8px;
+                border-radius: 50%;
+                background: #999;
+            }
+        }
+        .app-actions {
+            height: 46px;
+            overflow: hidden;
+            padding-top: 12px;
+            .app-button-play {
+                cursor: pointer;
+                padding: 5px 12px 5px 8px;
+                font-size: 14px;
+                color: #fff;
+                border-radius: 4px;
+                background: #111;
+                display: inline-block;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                &:hover {
+                    color: #fff;
+                    background: #444;
+                }
+                mat-icon {
+                    margin-right: 6px;
+                }
+            }
+        }
+    }
+    .app-tracks {
+        padding: 20px 10px;
+        .app-track {
+            overflow: hidden;
+            cursor: pointer;
+            line-height: 40px;
+            padding-right: 10px;
+            .app-track-left {
+                width: 50px;
+                float: left;      
+                .app-track-number {
+                    font-size: 15px;
+                    color: #999;
+                    margin-left: 10px;
+                }
+                .mat-icon {
+                    display: none;
+                    float: left;
+                    margin-top: 8px;
+                    margin-left: 3px;
+                }
+            }
+            .app-track-title {
+                font-size: 15px;
+                color: #333;
+                float: left;
+            }
+            &:hover {
+                background-color: #e5e5e5;
+                .app-track-left {
+                    .app-track-number {
+                        display: none;
+                    }
+                    .mat-icon {
+                        display: block;
+                    }
+                }
+            }
         }
     }
 }

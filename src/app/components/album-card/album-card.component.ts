@@ -25,6 +25,7 @@ export class AlbumCardComponent implements OnInit {
 
   thumb():any {
     const url = this.api.getThumb(this.album.pid);
+    // const url = `/assets/img/img${Math.ceil(Math.random() * 6)}.png`;
     return this._sanitizer.bypassSecurityTrustStyle(`url(${url})`);
 
   }

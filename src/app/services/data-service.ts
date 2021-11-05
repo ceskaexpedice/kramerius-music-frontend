@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Album } from '../models/album.model';
+import { Track } from '../models/track.model';
 import { ApiService } from './api-service';
 
 @Injectable()
@@ -85,6 +86,15 @@ export class DataService {
   //   return categories;
   // }
 
+
+  getTracks(albumPid: string, callback: (track: Track[]) => void) {
+    this.api.getTracks(albumPid).subscribe(response => {
+      const tracks = Track.fromJsonArray(response['response']['docs']);
+      callback(tracks);
+    });
+  }
+
+
   getAlbumsByCategory(category: string, value: string, limit: number = 100): Album[] {
     const albums: Album[] = [];
     for (const album of this.albums) {
@@ -133,7 +143,6 @@ export class DataService {
     return null;
   }
   
-
   watchStatus(): Observable<any> {
     return this.subjectStatus.asObservable();
 }

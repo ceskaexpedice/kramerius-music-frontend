@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Album } from 'src/app/models/album.model';
+import { Track } from 'src/app/models/track.model';
+import { ApiService } from 'src/app/services/api-service';
 import { DataService } from 'src/app/services/data-service';
 
 
@@ -14,21 +16,47 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   pid: string;
   album: Album;
+  tracks: Track[];
+
+  albumsByArtist: Album[];
+  albumsByGenre: Album[];
+
   private dataStatusSubscription: Subscription;
 
-  constructor(public data: DataService, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, public data: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.pid = params.get('pid') || "";
       if (this.data.ready) {
-        this.album = this.data.getAlbumByPid(this.pid);
+        this.initAlbum(this.data.getAlbumByPid(this.pid));
       }
       this.dataStatusSubscription = this.data.watchStatus().subscribe(() => {
-        this.album = this.data.getAlbumByPid(this.pid)
+        this.initAlbum(this.data.getAlbumByPid(this.pid));
       });
-      console.log('aaaa', this.data.getAlbumsByCategory('artist', this.album.artist(), 10));
     });
+  }
+
+
+  initAlbum(album: Album) {
+    this.album = album;
+    this.data.getTracks(album.pid, (tracks: Track[]) => {
+      this.tracks = tracks;
+      console.log('tracks', tracks);
+    });
+    this.albumsByArtist = [];
+    this.albumsByGenre = [];
+    for (const album of this.data.getAlbumsByCategory('genre', this.album.genre(), 10)) {
+      if (this.album.pid != album.pid) {
+        this.albumsByGenre.push(album);
+      }
+    }
+    for (const album of this.data.getAlbumsByCategory('artist', this.album.artist(), 10)) {
+      if (this.album.pid != album.pid) {
+        this.albumsByArtist.push(album);
+      }
+    }
+
   }
 
   ngOnDestroy(): void {
@@ -38,5 +66,11 @@ export class AlbumComponent implements OnInit, OnDestroy {
   encode(value: string): string {
     return encodeURIComponent(value);
   }
+
+  getImage(): string {
+    return this.api.getThumb(this.album.pid);
+  }
+
+
 
 }
