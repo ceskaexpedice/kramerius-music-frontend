@@ -5,6 +5,7 @@ import { Album } from 'src/app/models/album.model';
 import { Track } from 'src/app/models/track.model';
 import { ApiService } from 'src/app/services/api-service';
 import { DataService } from 'src/app/services/data-service';
+import { PlayerService } from 'src/app/services/player-service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   private dataStatusSubscription: Subscription;
 
-  constructor(private api: ApiService, public data: DataService, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, public player: PlayerService, public data: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -40,7 +41,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   initAlbum(album: Album) {
     this.album = album;
-    this.data.getTracks(album.pid, (tracks: Track[]) => {
+    this.data.getTracks(album, (tracks: Track[]) => {
       this.tracks = tracks;
       console.log('tracks', tracks);
     });
@@ -71,6 +72,22 @@ export class AlbumComponent implements OnInit, OnDestroy {
     return this.api.getThumb(this.album.pid);
   }
 
+  playTrack(track: Track) {
+    if (this.player.isActive(track)) {
+      if (this.player.playing) {
+        this.player.pause();
+      } else {
+        this.player.play();
+      }
+    } else {
+      this.player.setTracks(this.tracks);
+      this.player.playTrack(track);
+    }
+  }
 
+  playAlbum() {
+    this.player.setTracks(this.tracks);
+    this.player.playFirst();
+  }
 
 }

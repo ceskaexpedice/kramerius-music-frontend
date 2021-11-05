@@ -87,9 +87,12 @@ export class DataService {
   // }
 
 
-  getTracks(albumPid: string, callback: (track: Track[]) => void) {
-    this.api.getTracks(albumPid).subscribe(response => {
+  getTracks(album: Album, callback: (track: Track[]) => void) {
+    this.api.getTracks(album.pid).subscribe(response => {
       const tracks = Track.fromJsonArray(response['response']['docs']);
+      for (const track of tracks) {
+        track.album = album;
+      }
       callback(tracks);
     });
   }

@@ -1,5 +1,7 @@
 .app-album {
     padding: 10px 10px;
+    margin: 0 auto;
+    max-width: 1100px;
     .app-category {
         padding-bottom: 20px;
         margin-top: 20px;
@@ -80,6 +82,7 @@
             overflow: hidden;
             padding-top: 12px;
             .app-button-play {
+                user-select: none;
                 cursor: pointer;
                 padding: 5px 12px 5px 8px;
                 font-size: 14px;
@@ -136,6 +139,13 @@
                     .mat-icon {
                         display: block;
                     }
+                }
+            }
+            &.app-active {
+                font-weight: 700;
+                color: #000;
+                .app-track-number {
+                    color: #000 !important;
                 }
             }
         }

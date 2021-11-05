@@ -14,6 +14,8 @@ import { ArtistComponent } from './components/artist/artist.component';
 import { GenreComponent } from './components/genre/genre.component';
 import { AlbumCardComponent } from './components/album-card/album-card.component';
 import { AlbumComponent } from './components/album/album.component';
+import { PlayerService } from './services/player-service';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { AlbumComponent } from './components/album/album.component';
     HomeComponent,
     ArtistComponent,
     GenreComponent,
-    AlbumComponent
+    AlbumComponent,
+    PlayerComponent
   ],
   imports: [
     // CommonModule,
@@ -36,7 +39,8 @@ import { AlbumComponent } from './components/album/album.component';
   ],
   providers: [
     ApiService,
-    DataService
+    DataService,
+    PlayerService
   ],
   bootstrap: [AppComponent]
 })

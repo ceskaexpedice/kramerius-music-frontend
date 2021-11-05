@@ -16,17 +16,18 @@
         </ng-container>
     </div>
     <div class="app-actions">
-        <div class="app-button-play">
+        <div class="app-button-play" (click)="playAlbum()">
             <mat-icon>play_arrow</mat-icon>
             Přehrát</div>
     </div>
 </div>
 
 <div class="app-tracks">
-    <div class="app-track" *ngFor="let track of tracks; let index = index;">
+    <div class="app-track" [class.app-active]="player.isActive(track)" (click)="playTrack(track)" *ngFor="let track of tracks; let index = index;">
         <div class="app-track-left">
             <div class="app-track-number">{{ index + 1 }}</div>
-            <mat-icon>play_arrow</mat-icon>
+            <mat-icon *ngIf="!player.isActive(track) || !player.playing">play_arrow</mat-icon>
+            <mat-icon *ngIf="player.isActive(track) && player.playing">pause</mat-icon>
         </div>
         <div class="app-track-title">{{ track.title }}</div>
     </div>

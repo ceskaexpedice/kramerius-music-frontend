@@ -1,3 +1,4 @@
-<div class="app-content-wrapper">
+<div class="app-content-wrapper" [class.app-player-visible]="player.visible">
   <router-outlet></router-outlet>
+  <app-player *ngIf="player.visible"></app-player>
 </div>

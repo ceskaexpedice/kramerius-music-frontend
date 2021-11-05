@@ -1,3 +1,4 @@
+import { Album } from "./album.model";
 
 export class Track {
 
@@ -6,7 +7,9 @@ export class Track {
   isPrivate: boolean;
   unitPid: string;
   unitTitle: string;
-
+  albumPid: string;
+  album: Album;
+  
   constructor() {
   }
 
@@ -15,6 +18,7 @@ export class Track {
     const track = new Track();
     track.pid = json['PID'];
     track.title = json['dc.title'];
+    track.albumPid = json['root_pid'];
     const models = json['model_path'][0].split('/');
     const pids = json['pid_path'][0].split('/');
     if (models.length >= 2 && models[models.length - 2] == 'soundunit' && pids.length >= 2) {

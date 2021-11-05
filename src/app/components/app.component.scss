@@ -1,0 +1,13 @@
+.app-content-wrapper {
+    position: relative;
+    &.app-player-visible {
+        padding-bottom: 80px;
+    }
+    app-player {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+}
