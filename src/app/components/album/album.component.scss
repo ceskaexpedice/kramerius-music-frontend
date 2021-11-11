@@ -102,6 +102,16 @@
                 }
             }
         }
+        @media only screen and (max-width: 600px) {
+            .app-album-image {
+                width: 100px;
+                height: 100px;
+                margin-right: 16px;
+            }
+            .app-album-title-wrapper {
+                height: 30px;
+            }
+        }
     }
     .app-tracks {
         padding: 20px 10px;
@@ -109,6 +119,7 @@
             overflow: hidden;
             cursor: pointer;
             line-height: 40px;
+            height: 40px;
             padding-right: 10px;
             .app-track-left {
                 width: 50px;
@@ -131,6 +142,7 @@
                 .app-track-title {
                     font-size: 15px;
                     color: #ccc;
+                    word-break: break-all;
                 }
                 .app-divider {
                     height: 4px;
@@ -142,6 +154,7 @@
                 }
                 .app-track-unit {
                     color: #999;
+                    word-break: break-all;
                 }
             }
             &:hover {

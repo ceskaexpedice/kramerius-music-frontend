@@ -136,8 +136,6 @@ export class PlayerService {
     return this.api.getThumb(this.track.albumPid);
   }
 
-
-
   private formatTime(secs: number) {
     const hr  = Math.floor(secs / 3600);
     const min = Math.floor((secs - (hr * 3600)) / 60);
