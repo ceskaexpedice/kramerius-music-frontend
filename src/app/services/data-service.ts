@@ -116,6 +116,28 @@ export class DataService {
     });
   }
 
+  findTracks(query: string, callback: (track: Track[]) => void) {
+    this.api.findTracks(query, 10).subscribe(response => {
+      const units: string[] = [];
+      const tracks = Track.fromJsonArray(response['response']['docs']);
+      for (const track of tracks) {
+        if (units.indexOf(track.unitPid) < 0) {
+          units.push(track.unitPid);
+        }
+        for (const album of this.albums) {
+          if (album.pid == track.albumPid) {
+            track.album = album;
+            break;
+          }
+        }
+        if (!track.album) {
+          console.log('track without album', track);
+        }
+      }
+      callback(tracks);
+    });
+  }
+
 
   getAlbumsByCategory(category: string, value: string, limit: number = 100): Album[] {
     const albums: Album[] = [];
@@ -133,6 +155,58 @@ export class DataService {
     return albums;
   }
 
+  getAlbumsByQuery(query: string, limit = 20) : Album[] {
+    const albums: Album[] = [];
+    if (!query) {
+      return albums;
+    }
+    for (const album of this.albums) {
+      if (album.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) >= 0) {
+        albums.push(album);
+      }
+      if (albums.length >= limit) {
+        return albums;
+      }
+    }
+    return albums;
+  }
+  
+
+  getArtistsByQuery(query: string, limit: number = 10): Category[] {
+    const categories: Category[] = [];
+    if (!query) {
+      return categories;
+    }
+    let i = 0;
+    for (const category of this.artists) {
+      if (category.value.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) >= 0) {
+        categories.push(category);
+        if (categories.length >= limit) {
+          return categories;
+        }
+      }
+    }
+    return categories;
+  }
+
+  getGenresByQuery(query: string, limit: number = 10): Category[] {
+    const categories: Category[] = [];
+    if (!query) {
+      return categories;
+    }
+    let i = 0;
+    for (const category of this.genres) {
+      if (category.value.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) >= 0) {
+        categories.push(category);
+        if (categories.length >= limit) {
+          return categories;
+        }
+      }
+    }
+    return categories;
+  }
+
+ 
   getTopGenres(limit: number = 10) {
     const categories: Category[] = [];
     let i = 0;
@@ -172,7 +246,7 @@ export class DataService {
 
 }
 
-interface Category {
+export interface Category {
     value: string;
     count: number;
     type?: string;

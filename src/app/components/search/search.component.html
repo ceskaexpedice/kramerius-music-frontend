@@ -1,0 +1,82 @@
+<div class="app-search">
+
+  <div class="app-top">
+    <div class="app-search-bar">
+      <input 
+      type="text" 
+      (ngModelChange)="onQueryChange($event)"
+      name="searchQuery"
+      placeholder="Hledat"
+      [(ngModel)]="query"
+      autocomplete="off">
+    </div>
+  </div>
+  <div class="app-results-wrapper">
+    <div class="app-results">
+      <div class="app-albums" *ngIf="albums && albums.length > 0">
+      <div class="app-label">Alba</div>
+        <a class="app-result" *ngFor="let album of albums" [routerLink]="['/album', album.pid]">
+          <div class="app-thumb-wrapper">
+            <div class="app-thumb" [style.background-image]="thumb(album.pid)"></div>
+            <mat-icon class="app-play-icon" (click)="playAlbum($event, album)">play_arrow</mat-icon>
+          </div>
+          <div class="app-title">{{ album.title }}</div>
+          <a class="app-artist" [routerLink]="['/artist', album.encodedArtist()]">{{ album.artist() }}</a>
+        </a>
+      </div>
+
+
+
+      <div class="app-albums" *ngIf="tracks && tracks.length > 0">
+        <div class="app-label">Skladby</div>
+        <a class="app-result" *ngFor="let track of tracks" [routerLink]="['/album', track.album.pid]">
+          <div class="app-thumb-wrapper">
+            <div class="app-thumb" [style.background-image]="thumb(track.album.pid)"></div>
+            <mat-icon class="app-play-icon" (click)="playAlbum($event, track.album)">play_arrow</mat-icon>
+          </div>
+          <div class="app-title">{{ track.title }}</div>
+
+          <div class="app-artist" style="max-width: 40%;">{{ track.album.title }}</div>
+          <div class="app-artist app-divider"></div>
+          <a class="app-artist" [routerLink]="['/artist', track.album.encodedArtist()]">{{ track.album.artist() }}</a>
+        </a>
+      </div>
+
+
+      <div class="app-albums" *ngIf="artists && artists.length > 0">
+        <div class="app-label">Interpreti</div>
+          <a class="app-result" *ngFor="let artist of artists" [routerLink]="['/artist', encode(artist.value)]">
+            <div class="app-thumb-wrapper">
+              <div class="app-thumb-icon">
+                <mat-icon>person</mat-icon>
+              </div>
+              <!-- <mat-icon class="app-play-icon">play_arrow</mat-icon> -->
+            </div>
+            <div class="app-title">{{ artist.value }}</div>
+            <div class="app-artist">{{ albumCountText(artist.count) }}</div>
+          </a>
+        </div>
+
+
+
+
+        <div class="app-albums" *ngIf="genres && genres.length > 0">
+          <div class="app-label">Žánry</div>
+            <a class="app-result" *ngFor="let genre of genres" [routerLink]="['/genre', encode(genre.value)]">
+              <div class="app-thumb-wrapper">
+                <div class="app-thumb-icon">
+                  <mat-icon>music_note</mat-icon>
+                </div>
+                <!-- <mat-icon class="app-play-icon">play_arrow</mat-icon> -->
+              </div>
+              <div class="app-title">{{ genre.value }}</div>
+              <div class="app-artist">{{ albumCountText(genre.count) }}</div>
+            </a>
+          </div>
+  
+
+
+
+    </div>
+  </div>
+</div>

@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ApiService {
 
-  private static apiUrl = 'https://kramerius.mzk.cz';
-  // private static apiUrl = 'https://kramerius.nm.cz';
+  // private static apiUrl = 'https://kramerius.mzk.cz';
+  private static apiUrl = 'https://kramerius.nm.cz';
   // private static apiUrl = 'https://kramerius4.mlp.cz';
   // private static apiUrl = 'http://kramerius.kfbz.cz';
 
@@ -37,7 +37,7 @@ export class ApiService {
           // + 'fq=fedora.model:map'
           // + 'fq=fedora.model:graphic'
           + 'fq=fedora.model:soundrecording'
-          + ' AND dostupnost:public'
+          // + ' AND dostupnost:public'
           + '&'
           + 'fl=PID,dostupnost,dc.creator,keywords,dc.title,datum_str&'
           // + 'facet=true&'
@@ -57,6 +57,18 @@ export class ApiService {
           + '&'
           + 'fl=PID,dostupnost,dc.title,model_path,pid_path,root_title,root_pid&'
           + 'rows=3000&'
+          + 'start=0'
+    return this.get(path);
+  }
+
+  findTracks(query: string, limit: number = 20): Observable<any> {
+    const q = query.trim();
+    const path = '/search/api/v5.0/search?'
+          + `q=dc.title:${q}*&`
+          + 'fq=fedora.model:track'
+          + '&'
+          + 'fl=PID,dostupnost,dc.title,model_path,pid_path,root_title,root_pid&'
+          + `rows=${limit}&`
           + 'start=0'
     return this.get(path);
   }

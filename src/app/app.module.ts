@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './modules/app-routing.module';
-import { AppComponent } from './components/app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
@@ -17,6 +16,8 @@ import { AlbumComponent } from './components/album/album.component';
 import { PlayerService } from './services/player-service';
 import { PlayerComponent } from './components/player/player.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AppComponent } from './components/app.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     GenreComponent,
     AlbumComponent,
     PlayerComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchComponent
   ],
   imports: [
     // CommonModule,

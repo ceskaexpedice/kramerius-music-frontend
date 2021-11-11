@@ -43,7 +43,6 @@ export class AlbumComponent implements OnInit, OnDestroy {
     this.album = album;
     this.data.getTracks(album, (tracks: Track[]) => {
       this.tracks = tracks;
-      console.log('tracks', tracks);
     });
     this.albumsByArtist = [];
     this.albumsByGenre = [];
