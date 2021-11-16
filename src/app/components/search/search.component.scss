@@ -16,7 +16,13 @@
       padding: 0 10px;
       background: #131314;
       border: 1px solid #27272a;
+      position: relative;
       border-radius: 4px;
+        mat-slide-toggle {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
         input {
           outline: none;
           background: transparent;
@@ -42,7 +48,7 @@
     .app-results-wrapper {
       // height: calc(100% - 70px);
       overflow: auto;
-
+      padding-bottom: 20px;
     .app-results {
       // overflow: auto;
       // padding-top: 20px;

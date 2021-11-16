@@ -61,12 +61,15 @@ export class ApiService {
     return this.get(path);
   }
 
-  findTracks(query: string, limit: number = 20): Observable<any> {
+  findTracks(query: string, onlyPublic: boolean = false, limit: number = 20): Observable<any> {
     const q = query.trim();
-    const path = '/search/api/v5.0/search?'
+    let path = '/search/api/v5.0/search?'
           + `q=dc.title:${q}*&`
-          + 'fq=fedora.model:track'
-          + '&'
+          + 'fq=fedora.model:track';
+    if (onlyPublic) {
+      path += ' AND dostupnost:public';
+    }
+    path += '&'
           + 'fl=PID,dostupnost,dc.title,model_path,pid_path,root_title,root_pid&'
           + `rows=${limit}&`
           + 'start=0'

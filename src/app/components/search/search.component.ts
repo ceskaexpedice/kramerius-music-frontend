@@ -14,6 +14,8 @@ import { PlayerService } from 'src/app/services/player-service';
 export class SearchComponent implements OnInit {
 
   query: string;
+  onlyPublic = false;
+
   albums: Album[];
   artists: Category[];
   genres: Category[];
@@ -26,6 +28,12 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  onPublicToggleChange() {
+    console.log('only public', this.onlyPublic);
+    this.onQueryChange(this.query);
+  }
+
   onQueryChange(query: string) {
     console.log('onQueryChange', query);
     if (!query) {
@@ -36,11 +44,11 @@ export class SearchComponent implements OnInit {
       console.log('AAA')
       return;
     }
-    this.albums = this.data.getAlbumsByQuery(query, 10);
+    this.albums = this.data.getAlbumsByQuery(query, this.onlyPublic, 10);
     this.genres = this.data.getGenresByQuery(query, 10);
     this.artists = this.data.getArtistsByQuery(query);
     const q = query;
-    this.data.findTracks(q, (tracks: Track[]) => {
+    this.data.findTracks(q, this.onlyPublic, (tracks: Track[]) => {
       if (q == this.query) {
         this.tracks = tracks;
       }

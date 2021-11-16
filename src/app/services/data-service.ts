@@ -116,8 +116,8 @@ export class DataService {
     });
   }
 
-  findTracks(query: string, callback: (track: Track[]) => void) {
-    this.api.findTracks(query, 10).subscribe(response => {
+  findTracks(query: string, onlyPublic: boolean, callback: (track: Track[]) => void) {
+    this.api.findTracks(query, onlyPublic, 10).subscribe(response => {
       const units: string[] = [];
       const tracks = Track.fromJsonArray(response['response']['docs']);
       for (const track of tracks) {
@@ -155,14 +155,16 @@ export class DataService {
     return albums;
   }
 
-  getAlbumsByQuery(query: string, limit = 20) : Album[] {
+  getAlbumsByQuery(query: string, onlyPublic: boolean, limit: number) : Album[] {
     const albums: Album[] = [];
     if (!query) {
       return albums;
     }
     for (const album of this.albums) {
       if (album.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) >= 0) {
-        albums.push(album);
+        if (!onlyPublic || !album.isPrivate) {
+          albums.push(album);
+        }
       }
       if (albums.length >= limit) {
         return albums;

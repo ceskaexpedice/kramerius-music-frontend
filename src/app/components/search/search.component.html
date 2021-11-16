@@ -9,6 +9,15 @@
       placeholder="Hledat"
       [(ngModel)]="query"
       autocomplete="off">
+
+      <mat-slide-toggle
+          color="primary"
+          (change)="onPublicToggleChange()"
+          [(ngModel)]="onlyPublic">
+        Veřejné
+      </mat-slide-toggle>
+
+
     </div>
   </div>
   <div class="app-results-wrapper">
