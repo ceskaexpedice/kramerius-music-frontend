@@ -24,6 +24,12 @@
 
 <div class="app-tracks">
     <div class="app-track" [class.app-active]="player.isActive(track)" (click)="playTrack(track)" *ngFor="let track of tracks; let index = index;">
+        
+        
+        <button mat-icon-button [matMenuTriggerFor]="trackMenu" [matMenuTriggerData]="{track: track}" style="float: right;" (click)="$event.stopPropagation();">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        
         <div class="app-track-left">
             <div class="app-track-number">{{ index + 1 }}</div>
             <mat-icon *ngIf="!player.isActive(track) || !player.playing">play_arrow</mat-icon>
@@ -59,3 +65,42 @@
 </div>
 
 </div>
+
+
+
+<mat-menu #trackMenu="matMenu" class="app-track-menu">
+    <ng-template matMenuContent let-track="track">
+  
+        <button mat-menu-item>
+            <mat-icon>queueu_music</mat-icon>
+            Přidat do fronty
+        </button>
+        <button mat-menu-item>
+            <mat-icon>playlist_play</mat-icon>
+            Přehrát jako další
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item [matMenuTriggerFor]="playlistMenu" [matMenuTriggerData]="{track: track}">
+            <mat-icon>playlist_add</mat-icon>
+            Přidat do playlistu
+        </button>
+
+    </ng-template>
+</mat-menu>
+
+<mat-menu #playlistMenu="matMenu" class="app-playlist-menu">
+    <ng-template matMenuContent let-track="track">
+
+        <button mat-menu-item (click)="onNewPlaylist()">
+            Přidat no nového playlist
+        </button>
+
+        <ng-container *ngIf="playlists.playlists.length > 0">
+            <mat-divider></mat-divider>
+            <button mat-menu-item *ngFor="let playlist of playlists.playlists">
+                {{ playlist.name }}
+            </button>
+        </ng-container>
+        
+    </ng-template>
+</mat-menu>

@@ -18,6 +18,8 @@ import { PlayerComponent } from './components/player/player.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent } from './components/app.component';
 import { SearchComponent } from './components/search/search.component';
+import { SimpleDialogComponent } from './dialogs/simple-dialog/simple-dialog.component';
+import { PlaylistService } from './services/playlist-service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SearchComponent } from './components/search/search.component';
     AlbumComponent,
     PlayerComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    SimpleDialogComponent
+
   ],
   imports: [
     // CommonModule,
@@ -44,7 +48,11 @@ import { SearchComponent } from './components/search/search.component';
   providers: [
     ApiService,
     DataService,
-    PlayerService
+    PlayerService,
+    PlaylistService
+  ],
+  entryComponents: [
+    SimpleDialogComponent
   ],
   bootstrap: [AppComponent]
 })

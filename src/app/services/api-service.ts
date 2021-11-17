@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ApiService {
 
-  // private static apiUrl = 'https://kramerius.mzk.cz';
-  private static apiUrl = 'https://kramerius.nm.cz';
+  private static apiUrl = 'https://kramerius.mzk.cz';
+  // private static apiUrl = 'https://kramerius.nm.cz';
   // private static apiUrl = 'https://kramerius4.mlp.cz';
   // private static apiUrl = 'http://kramerius.kfbz.cz';
 
