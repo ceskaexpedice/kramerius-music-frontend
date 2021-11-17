@@ -41,7 +41,7 @@
         <a class="app-result" *ngFor="let track of tracks" [routerLink]="['/album', track.album.pid]">
           <div class="app-thumb-wrapper">
             <div class="app-thumb" [style.background-image]="thumb(track.album.pid)"></div>
-            <mat-icon class="app-play-icon" (click)="playAlbum($event, track.album)">play_arrow</mat-icon>
+            <mat-icon class="app-play-icon" (click)="playTrack($event, track)">play_arrow</mat-icon>
           </div>
           <div class="app-title">{{ track.title }}</div>
 

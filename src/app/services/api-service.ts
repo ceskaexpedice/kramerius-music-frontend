@@ -65,7 +65,7 @@ export class ApiService {
     const q = query.trim();
     let path = '/search/api/v5.0/search?'
           + `q=dc.title:${q}*&`
-          + 'fq=fedora.model:track';
+          + 'fq=fedora.model:track AND model_path:soundrecording/*';
     if (onlyPublic) {
       path += ' AND dostupnost:public';
     }

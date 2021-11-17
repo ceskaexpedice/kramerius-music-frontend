@@ -8,6 +8,9 @@ import { ApiService } from './api-service';
 @Injectable()
 export class DataService {
 
+  lastSearchQuery = "";
+  lastSearchOnlyPublic = false;
+
   ready = false;
   albums: Album[];
   genres: Category[];

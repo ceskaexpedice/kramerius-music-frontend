@@ -1,38 +1,101 @@
-<div class="app-player">
+<div class="app-player-wrapper">
+    <div class="app-player-playlist-wrapper" [class.app-hidden]="!isExpanded">
+        
+        <mat-icon class="app-icon-close" (click)="togglePlayerPlaylist()">close</mat-icon>
 
-<div #progressContainer class="app-progress-container" (click)="onProgressClick($event)">
-    <div class="app-progress" [style.width]="(player.progress * 100) + '%'"></div>
-</div>
 
-    <div class="app-player-left">
-        <ng-container *ngIf="player.track">
-            <div class="app-player-image">
-                <img [src]="player.getAlbumImage()">
+        <div class="app-playlist">
+            <div class="app-label">Právě hraje</div>
+
+            <div class="app-track" (click)="player.togglePlay()">
+                
+                <div class="app-track-left">
+                    <div class="app-track-number">1</div>
+                    <mat-icon *ngIf="!player.playing">play_arrow</mat-icon>
+                    <mat-icon *ngIf="player.playing">pause</mat-icon>
+                </div>
+                <div class="app-track-label">
+                    <div class="app-track-title">
+                        {{ player.track.title }}
+                    </div>
+                    <ng-container *ngIf="player.track.unit">
+                        <div class="app-divider"></div>
+                        <div class="app-track-unit">{{ player.track.unit.title }}</div>
+                    </ng-container>
+                </div>
             </div>
-            <div class="app-player-track">{{ player.track.title }}</div>
-            <div class="app-player-album">
-                <a class="app-album-title" [routerLink]="['/album', player.track.album.pid]">{{ player.track.album.title }}</a>
-           </div>
-            <div class="app-player-album">
-                <a class="app-album-artist" [routerLink]="['/artist', encode(player.track.album.artist())]">{{ player.track.album.artist() }}</a>
-                <ng-container *ngIf="player.track.album.date">
-                    <div class="app-divider"></div>
-                    <div class="app-album-date">{{ player.track.album.date }}</div>
-                </ng-container>
-            </div>
-        </ng-container>
+
+
+
+            <ng-container *ngIf="player.hasNext()">
+
+                <div class="app-label">Následuje</div>
+
+                <div class="app-track" (click)="player.playTrack(track)" *ngFor="let track of player.nextTracks(); let index = index;">
+                    <div class="app-track-artist" *ngIf="track.album" style="float: right; max-width: 30%; color: #ccc;">{{ track.album.artist() }}</div>
+
+                    <div class="app-track-left">
+                        <div class="app-track-number">{{ index + 2 }}</div>
+                        <mat-icon>play_arrow</mat-icon>
+                    </div>
+                    <div class="app-track-label">
+                        <div class="app-track-title">
+                            {{ track.title }}
+                        </div>
+                        <ng-container *ngIf="track.unit">
+                            <div class="app-divider"></div>
+                            <div class="app-track-unit">{{ track.unit.title }}</div>
+                        </ng-container>
+                    </div>
+                </div>
+            </ng-container>
+
+
+
+        </div>
+
+
+    </div>
+    <div class="app-player">
+
+    <div #progressContainer class="app-progress-container" (click)="onProgressClick($event)">
+        <div class="app-progress" [style.width]="(player.progress * 100) + '%'"></div>
     </div>
 
-    <div class="app-player-center">
-        <div class="app-player-buttons">
-            <mat-icon [class.app-disabled]="!player.hasPrevious()" (click)="player.playPrevious()">skip_previous</mat-icon>
-            <mat-icon *ngIf="!player.playing" (click)="player.play()" class="app-player-play">play_circle</mat-icon>
-            <mat-icon *ngIf="player.playing" (click)="player.pause()" class="app-player-play">pause_circle</mat-icon>
-            <mat-icon [class.app-disabled]="!player.hasNext()" (click)="player.playNext()">skip_next</mat-icon>
+        <div class="app-player-left">
+            <ng-container *ngIf="player.track">
+                <div class="app-player-image">
+                    <img [src]="player.getAlbumImage()">
+                </div>
+                <div class="app-player-track">{{ player.track.title }}</div>
+                <div class="app-player-album">
+                    <a class="app-album-title" [routerLink]="['/album', player.track.album.pid]">{{ player.track.album.title }}</a>
+            </div>
+                <div class="app-player-album">
+                    <a class="app-album-artist" [routerLink]="['/artist', encode(player.track.album.artist())]">{{ player.track.album.artist() }}</a>
+                    <ng-container *ngIf="player.track.album.date">
+                        <div class="app-divider"></div>
+                        <div class="app-album-date">{{ player.track.album.date }}</div>
+                    </ng-container>
+                </div>
+            </ng-container>
         </div>
-        <div class="app-player-duration" *ngIf="player.trackDurationText">
-            {{ player.trackPositionText }} / {{ player.trackDurationText }}
-        </div>
-    </div>
 
+        <div class="app-player-center">
+            <div class="app-player-buttons">
+                <mat-icon [class.app-disabled]="!player.hasPrevious()" (click)="player.playPrevious()">skip_previous</mat-icon>
+                <mat-icon *ngIf="!player.playing" (click)="player.play()" class="app-player-play">play_circle</mat-icon>
+                <mat-icon *ngIf="player.playing" (click)="player.pause()" class="app-player-play">pause_circle</mat-icon>
+                <mat-icon [class.app-disabled]="!player.hasNext()" (click)="player.playNext()">skip_next</mat-icon>
+            </div>
+            <div class="app-player-duration" *ngIf="player.trackDurationText">
+                {{ player.trackPositionText }} / {{ player.trackDurationText }}
+            </div>
+        </div>
+
+        <div class="app-player-right">
+            <mat-icon (click)="togglePlayerPlaylist()">{{ isExpanded ? 'expand_more' : 'expand_less' }}</mat-icon>
+        </div>
+
+    </div>
 </div>

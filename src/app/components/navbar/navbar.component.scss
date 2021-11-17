@@ -1,3 +1,5 @@
+@import './src/variables.scss';
+
 .app-navbar {
     height: 60px;
     background: #131314;
@@ -6,7 +8,7 @@
     padding-left: 20px;
     padding-right: 10px;
     .app-logo {
-        color: #ffbc00;
+        color: $app-primary-color;
         display: flex;
         text-decoration: none;
         font-size: 19px;

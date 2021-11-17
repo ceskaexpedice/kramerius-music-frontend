@@ -1,3 +1,5 @@
+@import './src/variables.scss';
+
 .app-search {
     max-width: 800px;
     margin: 0 auto;
@@ -82,7 +84,7 @@
           .app-play-icon {
             position: absolute;
             top: 15px;
-            background: #ffbc00;
+            background: $app-primary-color;
             left: 15px;
             border-radius: 50%;
             font-size: 30px;
@@ -91,6 +93,9 @@
             height: 30px;
             color: #000;
             display: none;
+            &:hover {
+              background: $app-primary-color-hl;
+          }
           }
           .app-thumb-icon {
             width: 50px;

@@ -25,18 +25,17 @@ html {
 
 
   .mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
-    background-color: #ffbc00;
-    background-color: rgba(255, 188, 0, 1);
-
+    background-color: $app-primary-color;
+    // background-color:   $app-primary-color-lightest;
   }
 
-  
+
   .mat-slide-toggle .mat-slide-toggle-bar {
     background-color: rgba(255, 255, 255, 0.4);
   }
 
   .mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
-    background-color: rgba(255, 188, 0, 0.5);
+    background-color: $app-primary-color-light;
   }
 
 

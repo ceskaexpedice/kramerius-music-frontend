@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlayerService } from 'src/app/services/player-service';
-
 
 @Component({
   selector: 'app-player',
@@ -10,12 +9,14 @@ import { PlayerService } from 'src/app/services/player-service';
 
 export class PlayerComponent implements OnInit {
 
+  isExpanded: boolean;
+
   @ViewChild('progressContainer', { static: false }) progressContainer: any;
 
   constructor(public player: PlayerService) { }
 
   ngOnInit() {
-   
+   this.isExpanded = false;
   }
 
   encode(value: string): string {
@@ -27,6 +28,10 @@ export class PlayerComponent implements OnInit {
     const point = event.clientX;
     const p = point / width;
     this.player.changeProgress(p);
+  }
+
+  togglePlayerPlaylist() {
+    this.isExpanded = !this.isExpanded;
   }
 
 }

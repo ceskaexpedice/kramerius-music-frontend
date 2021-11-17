@@ -82,7 +82,8 @@
             height: 46px;
             overflow: hidden;
             padding-top: 12px;
-            .app-button-play {
+            display: flex;
+            .app-button {
                 user-select: none;
                 cursor: pointer;
                 padding: 5px 12px 5px 8px;
@@ -93,14 +94,40 @@
                 display: flex;
                 align-items: center;
                 width: fit-content;
-                background: #ffbc00;
-                color: #111;
-                &:hover {
-                    color: #000;
-                    background: $app-primary-color;
-                }
+                margin-right: 14px;
+                border: 1px solid transparent;
                 mat-icon {
                     margin-right: 6px;
+                }
+                &.app-button-play {
+                    background: $app-primary-color;
+                    color: #111;
+                    &:hover {
+                        color: #000;
+                        background: $app-primary-color-hl;
+                    }
+                }
+                &.app-button-like {
+                    color: $app-primary-color;
+                    border-color: $app-primary-color;
+                    &:hover {
+                        color: $app-primary-color-hl;
+                        border-color: $app-primary-color-hl;
+                    }
+                    mat-icon {
+                        font-size: 20px;
+                        line-height: 24px;
+                    }
+                }
+            }
+            .app-more {
+                color: #ccc;
+                user-select: none;
+                cursor: pointer;
+                margin-left: -4px;
+                margin-top: 5px;
+                &:hover {
+                    color: #fff;
                 }
             }
         }

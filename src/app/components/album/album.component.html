@@ -16,9 +16,16 @@
         </ng-container>
     </div>
     <div class="app-actions">
-        <div class="app-button-play" (click)="playAlbum()">
+        <div class="app-button app-button-play" (click)="playAlbum()">
             <mat-icon>play_arrow</mat-icon>
-            Přehrát</div>
+            Přehrát
+        </div>
+        <div class="app-button app-button-like" (click)="playAlbum()">
+            <mat-icon>library_add</mat-icon>
+            Přidat do knihovny
+        </div>
+        <mat-icon class="app-more" [matMenuTriggerFor]="albumMenu">more_vert</mat-icon>
+
     </div>
 </div>
 
@@ -72,7 +79,7 @@
     <ng-template matMenuContent let-track="track">
   
         <button mat-menu-item>
-            <mat-icon>queueu_music</mat-icon>
+            <mat-icon>queue_music</mat-icon>
             Přidat do fronty
         </button>
         <button mat-menu-item>
@@ -80,6 +87,10 @@
             Přehrát jako další
         </button>
         <mat-divider></mat-divider>
+        <button mat-menu-item>
+            <mat-icon>library_add</mat-icon>
+            Přidat do knihovny
+        </button>
         <button mat-menu-item [matMenuTriggerFor]="playlistMenu" [matMenuTriggerData]="{track: track}">
             <mat-icon>playlist_add</mat-icon>
             Přidat do playlistu
@@ -102,5 +113,36 @@
             </button>
         </ng-container>
         
+    </ng-template>
+</mat-menu>
+
+
+
+
+<mat-menu #albumMenu="matMenu" class="app-album-menu">
+    <ng-template matMenuContent let-track="track">
+  
+        <button mat-menu-item>
+            <mat-icon>shuffle</mat-icon>
+            Přehrát náhodně
+        </button>
+        <button mat-menu-item>
+            <mat-icon>queue_music</mat-icon>
+            Přidat do fronty
+        </button>
+        <button mat-menu-item>
+            <mat-icon>playlist_play</mat-icon>
+            Přehrát jako další
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+            <mat-icon>library_add</mat-icon>
+            Přidat do knihovny
+        </button>
+        <button mat-menu-item>
+            <mat-icon>playlist_add</mat-icon>
+            Přidat do playlistu
+        </button>
+
     </ng-template>
 </mat-menu>

@@ -26,6 +26,11 @@ export class SearchComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.query = this.data.lastSearchQuery;
+    this.onlyPublic = this.data.lastSearchOnlyPublic;
+    if (this.query) {
+      this.onQueryChange(this.query);
+    }
   }
 
 
@@ -35,7 +40,8 @@ export class SearchComponent implements OnInit {
   }
 
   onQueryChange(query: string) {
-    console.log('onQueryChange', query);
+    this.data.lastSearchOnlyPublic = this.onlyPublic;
+    this.data.lastSearchQuery = query;
     if (!query) {
       this.albums = [];
       this.artists = [];
@@ -82,5 +88,15 @@ export class SearchComponent implements OnInit {
       this.player.playFirst();
     });
   }
+
+  playTrack(event: any, track: Track) {
+    event.stopPropagation();
+    event.preventDefault();
+    // this.data.getTracks(album, (tracks: Track[]) => {
+      this.player.setTracks([track]);
+      this.player.playFirst();
+    // });
+  }
+
 
 }

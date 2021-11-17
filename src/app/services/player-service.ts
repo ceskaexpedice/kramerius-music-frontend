@@ -84,6 +84,10 @@ export class PlayerService {
     };
   }
 
+  nextTracks(): Track[] {
+    return this.tracks.slice(this.index + 1, this.tracks.length);
+  }
+
   hasNext() {
     return this.index < this.tracks.length - 1;
   }
@@ -116,6 +120,14 @@ export class PlayerService {
 
   changeProgress(progress: number) {
     this.audio.currentTime = progress * this.trackDuration;
+  }
+
+  togglePlay() {
+    if (this.isPlaying()) {
+      this.pause();
+    } else {
+      this.play();
+    }
   }
 
   play() {

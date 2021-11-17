@@ -1,113 +1,234 @@
-.app-player {
-   background: #131314;
-   height: 90px;
-   width: 100%;
-   padding: 0;
-   overflow: hidden;
-   .app-progress-container {
-       background-color: #3a3a40;
-       border-radius: 5px;
-       cursor: pointer;
-       height: 4px;
-       margin-top: 2px;
-       margin-bottom: 6px;
-       width: 100%;
-       .app-progress {
-           background-color: #ffbc00;
-           border-radius: 5px;
-           height: 100%;
-           width: 40%;
-           transition: width 0.1s linear;
-        }
-   }
-   .app-player-left {
-       padding-left: 6px;
-       float: left;
-    //    background: green;
-       width: calc((100% - 150px) / 2 );
-       .app-player-image {
-           width: 80px;
-           float: left;
-           img {
-               height: 68px;
-           }
-       }
-       .app-player-track {
-           font-size: 15px;
-           color: #fff;
-           line-height: 20px;
-           height: 20px;
-           margin-top: 4px;
-           margin-bottom: 6px;
-           overflow: hidden;
-       }
-       .app-player-album {
-            height: 18px;
-            overflow: hidden;
-            .app-album-title, .app-album-artist, .app-album-date {
-                font-size: 13px;
-                cursor: pointer;
-                color: #aaa;
-                line-height: 18px;
-                float: left;
-                text-decoration: none;
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-            .app-divider {
-                float: left;
-                height: 4px;
-                width: 4px;
-                margin: 5px 8px;
-                border-radius: 50%;
-                background: #999;
-            }
-       }
-   }
-   .app-player-center {
-       width: 150px;
-       padding-left: 30px;
-       float: left;
-       text-align: center;
-       .app-player-buttons {
-           display: flex;
-            mat-icon {
-                user-select: none;
-                cursor: pointer;
-                color: #ccc;
-                width: 35px;
-                height: 50px;
-                line-height: 50px;
-                text-align: center;
-                &.app-active, &:hover {
-                    color: #fff;  
-                } 
-                &.app-player-play {
-                    font-size: 50px;
-                    width: 50px;
+@import './src/variables.scss';
 
-                }
-                &.app-disabled {
-                    user-select: none;
-                    pointer-events: none;
-                    color: #888;
-                }
+.app-player-wrapper {
+
+    .app-player-playlist-wrapper {
+        position: relative;
+        height: calc(100vh - 150px);
+        transition: height 0.2s ease-out;
+        background: #080808;
+        overflow: hidden;
+        // border-top: 2px solid #3a3a3f;
+        &.app-hidden {
+            height: 0px;
+        }
+        .app-icon-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #ccc;
+            user-select: none;
+            cursor: pointer;
+            font-size: 32px;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            &:hover {
+                color: #fff;
             }
         }
-        .app-player-duration {
-            color: #888;
-            user-select: none;
-        }
-   }
-   @media only screen and (max-width: 600px) {
-        .app-player-left {
-            width: calc(100% - 130px);
-        }
-        .app-player-center {
-            width: 120px;
-            padding-left: 5px;
+        .app-playlist {
+            max-width: 800px;
+            padding: 20px;
+            margin: 0 auto;
+            .app-label {
+                color: #ccc;
+                font-size: 17px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            .app-track {
+                overflow: hidden;
+                cursor: pointer;
+                line-height: 40px;
+                height: 40px;
+                padding-right: 10px;
+                .app-track-left {
+                    width: 50px;
+                    float: left;      
+                    .app-track-number {
+                        font-size: 15px;
+                        color: #777;
+                        margin-left: 10px;
+                    }
+                    .mat-icon {
+                        display: none;
+                        float: left;
+                        margin-top: 8px;
+                        margin-left: 3px;
+                        color: #ccc;
+                    }
+                }
+                .app-track-label {
+                    display: flex;
+                    .app-track-title {
+                        font-size: 15px;
+                        color: #ccc;
+                        word-break: break-all;
+                    }
+                    .app-divider {
+                        height: 4px;
+                        width: 4px;
+                        margin: 5px 8px;
+                        border-radius: 50%;
+                        background: #999;
+                        margin-top: 18px;
+                    }
+                    .app-track-unit {
+                        color: #999;
+                        word-break: break-all;
+                    }
+                }
+                &:hover {
+                    background-color: #26272c;
+                    .app-track-left {
+                        .app-track-number {
+                            display: none;
+                        }
+                        .mat-icon {
+                            display: block;
+                        }
+                    }
+                }
+                &.app-active {
+                    font-weight: 700;
+                    color: #fff;
+                    .app-track-number {
+                        color: #fff !important;
+                    }
+                }
+            }
         }
     }
+    .app-player {
+    background: #131314;
+    height: 90px;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    .app-progress-container {
+        background-color: #3a3a40;
+        border-radius: 5px;
+        cursor: pointer;
+        height: 4px;
+        margin-top: 2px;
+        margin-bottom: 6px;
+        width: 100%;
+        .app-progress {
+            background-color: $app-primary-color;
+            border-radius: 5px;
+            height: 100%;
+            width: 40%;
+            transition: width 0.1s linear;
+            }
+    }
+    .app-player-left {
+        padding-left: 6px;
+        float: left;
+        //    background: green;
+        width: calc((100% - 150px) / 2 );
+        .app-player-image {
+            width: 80px;
+            float: left;
+            img {
+                height: 68px;
+            }
+        }
+        .app-player-track {
+            font-size: 15px;
+            color: #fff;
+            line-height: 20px;
+            height: 20px;
+            margin-top: 4px;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+        .app-player-album {
+                height: 18px;
+                overflow: hidden;
+                .app-album-title, .app-album-artist, .app-album-date {
+                    font-size: 13px;
+                    cursor: pointer;
+                    color: #aaa;
+                    line-height: 18px;
+                    float: left;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                .app-divider {
+                    float: left;
+                    height: 4px;
+                    width: 4px;
+                    margin: 5px 8px;
+                    border-radius: 50%;
+                    background: #999;
+                }
+        }
+    }
+    .app-player-right {
+            padding-right: 22px;
+            float: right;
+            width: calc((100% - 150px) / 2 );
+            text-align: right;
+            mat-icon {
+                margin-top: 22px;
+                color: #ccc;
+                cursor: pointer;
+                user-select: none;
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    .app-player-center {
+        width: 150px;
+        padding-left: 30px;
+        float: left;
+        text-align: center;
+        .app-player-buttons {
+            display: flex;
+                mat-icon {
+                    user-select: none;
+                    cursor: pointer;
+                    color: #ccc;
+                    width: 35px;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                    &.app-active, &:hover {
+                        color: #fff;  
+                    } 
+                    &.app-player-play {
+                        font-size: 50px;
+                        width: 50px;
 
+                    }
+                    &.app-disabled {
+                        user-select: none;
+                        pointer-events: none;
+                        color: #888;
+                    }
+                }
+            }
+            .app-player-duration {
+                color: #888;
+                user-select: none;
+            }
+    }
+    @media only screen and (max-width: 600px) {
+            .app-player-left {
+                width: calc(100% - 130px);
+            }
+            .app-player-center {
+                width: 120px;
+                padding-left: 5px;
+            }
+            .app-player-right {
+                display: none;
+            }
+        }
+
+    }
 }
