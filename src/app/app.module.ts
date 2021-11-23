@@ -26,6 +26,8 @@ import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { AngularTokenModule } from 'angular-token';
 import { environment } from 'src/environments/environment';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { environment } from 'src/environments/environment';
     SearchComponent,
     SimpleDialogComponent,
     AvatarComponent,
-    LoginComponent
+    LoginComponent,
+    SidebarComponent,
+    PlaylistComponent
   ],
   imports: [
     // CommonModule,

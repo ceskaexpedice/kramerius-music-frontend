@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Album } from '../models/album.model';
 import { Track } from '../models/track.model';
+import { Playlist } from '../models/playlist.model';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ApiService {
@@ -34,7 +36,7 @@ export class ApiService {
   private put(path: string, body: any, options: any = {}): Observable<Object> {
     return this.http.put(encodeURI(`${ApiService.apiUrl}${path}`), body, options);
   }
-  private post(path: string, body: any, options: any = {}): Observable<Object> {
+  private post(path: string, body: any = null, options: any = {}): Observable<Object> {
     return this.http.post(encodeURI(`${ApiService.apiUrl}${path}`), body, options);
   }
 
@@ -61,6 +63,26 @@ export class ApiService {
   //         + 'start=0';
   //   return this.get(path);
   // }
+
+  getPlaylists(): Observable<Playlist[]> {
+    const path = `/playlists`
+    return this.get(path).pipe(map((response: any)=> Playlist.fromJsonArray(response)));
+  }
+
+  getPlaylist(uid: string): Observable<Playlist> {
+    const path = `/playlists/${uid}`
+    return this.get(path).pipe(map((response: any)=> Playlist.fromJson(response)));
+  }
+
+  addTrackToPlaylist(playlist: Playlist, track: Track): Observable<any> {
+    const path = `/playlists/${playlist.uid}/tracks/${track.pid}`
+    return this.post(path);
+  }
+
+  createPlaylist(playlist: Playlist): Observable<Playlist> {
+    const path = `/playlists`
+    return this.post(path, { title: playlist.title }).pipe(map((response: any)=> Playlist.fromJson(response)));
+  }
 
   getAlbums(): Observable<any> {
     const path = '/albums'

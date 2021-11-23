@@ -6,6 +6,7 @@ import { AlbumComponent } from '../components/album/album.component';
 import { ArtistComponent } from '../components/artist/artist.component';
 import { GenreComponent } from '../components/genre/genre.component';
 import { HomeComponent } from '../components/home/home.component';
+import { PlaylistComponent } from '../components/playlist/playlist.component';
 import { SearchComponent } from '../components/search/search.component';
 
 const routes: Routes = [
@@ -14,6 +15,9 @@ const routes: Routes = [
   { path: 'genre/:genre', component: GenreComponent },
   { path: 'album/:pid', component: AlbumComponent },
   { path: 'search', component: SearchComponent },
+
+  { path: 'playlist/:uid', component: PlaylistComponent },
+
 
   { path: 'login', component: LoginComponent },
   { path: 'omniauth', component: OmniauthComponent }

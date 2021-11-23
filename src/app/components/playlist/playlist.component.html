@@ -1,0 +1,86 @@
+<div class="app-album" *ngIf="data.ready && playlist ">
+
+
+<!-- <div class="app-album-header">
+    <div class="app-album-image">
+        <img [src]="getImage()">
+    </div>
+    <div class="app-album-title-wrapper">
+        <div class="app-album-title">{{ album.title }}</div>
+    </div>
+    <div class="app-album-bottom">
+        <a [routerLink]="['/artist', encode(album.artist())]" class="app-album-artist">{{ album.artist() }}</a>
+        <ng-container *ngIf="album.date">
+            <div class="app-divider"></div>
+            <div class="app-album-date" style="float: left;">{{ album.date }}</div>
+        </ng-container>
+        <div class="app-divider"></div>
+        <div class="app-album-date">{{ album.sourceName() }}</div>
+
+    </div>
+    <div class="app-actions">
+        <div class="app-button app-button-play" (click)="playAlbum()">
+            <mat-icon>play_arrow</mat-icon>
+            Přehrát
+        </div>
+        <div class="app-button app-button-like" (click)="playAlbum()">
+            <mat-icon>library_add</mat-icon>
+            Přidat do knihovny
+        </div>
+        <mat-icon class="app-more" [matMenuTriggerFor]="albumMenu">more_vert</mat-icon>
+
+    </div>
+</div> -->
+
+<div class="app-tracks">
+    <div class="app-track" [class.app-active]="player.isActive(track)" (click)="playTrack(track)" *ngFor="let track of playlist.tracks; let index = index;">
+        
+        
+        <button mat-icon-button [matMenuTriggerFor]="trackMenu" [matMenuTriggerData]="{track: track}" style="float: right;" (click)="$event.stopPropagation();">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <img class="app-source" [src]="'/assets/images/logo_' + track.album.source + '.png'">
+        <div class="app-track-artist">{{ track.album.artist() }}</div>
+
+        <div class="app-track-left">
+            <div class="app-track-number">{{ index + 1 }}</div>
+            <mat-icon *ngIf="!player.isActive(track) || !player.playing">play_arrow</mat-icon>
+            <mat-icon *ngIf="player.isActive(track) && player.playing">pause</mat-icon>
+        </div>
+        <div class="app-track-label">
+
+            <div class="app-track-title">
+                {{ track.title }}
+            </div>
+            <ng-container *ngIf="track.album">
+                <div class="app-divider"></div>
+                <div class="app-track-unit">{{ track.album.title }}</div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<mat-menu #trackMenu="matMenu" class="app-track-menu">
+    <ng-template matMenuContent let-track="track">
+  
+        <button mat-menu-item>
+            <mat-icon>queue_music</mat-icon>
+            Přidat do fronty
+        </button>
+        <button mat-menu-item>
+            <mat-icon>playlist_play</mat-icon>
+            Přehrát jako další
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+            <mat-icon>library_add</mat-icon>
+            Přidat do knihovny
+        </button>
+
+
+    </ng-template>
+</mat-menu>

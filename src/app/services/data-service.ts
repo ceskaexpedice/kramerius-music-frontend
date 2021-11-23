@@ -143,7 +143,7 @@ export class DataService {
   }
 
 
-  getAlbumsByCategory(category: string, value: string, limit: number = 100): Album[] {
+  getAlbumsByCategory(category: string, value: string, limit: number = 500): Album[] {
     const albums: Album[] = [];
     for (const album of this.albums) {
       if (category == 'artist' && album.artists.includes(value)) {

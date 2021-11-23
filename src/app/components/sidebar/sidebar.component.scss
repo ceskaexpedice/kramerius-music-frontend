@@ -1,0 +1,79 @@
+@import './src/variables.scss';
+
+.app-sidebar {
+    width: 200px;
+    height: 100%;
+    background: #131314;
+    border-right: 1px solid #2c2c2c;
+    .app-logo {
+        color: $app-primary-color;
+        font-size: 20px;
+        padding-top: 30px;
+        // text-align: center;
+        margin-left: 24px;
+        padding-bottom: 30px;
+    }
+    .app-space {
+        flex: 1 1 auto;
+    }
+    .app-label {
+      margin-top: 25px;
+      margin-bottom: 5px;
+      margin-left: 22px;
+      font-size: 14px;
+      color: #666;
+    }
+    .app-action {
+        line-height: 32px;
+        display: block;
+        margin-right: 10px;
+        margin-left: 10px;
+        text-decoration: none;
+        padding: 0 12px;
+        font-size: 15px;
+        color: #ccc;
+        cursor: pointer;
+        // font-weight: 500;
+        &:hover {
+            color: #fff;
+            // background: #333;
+        }
+    }
+
+    .app-profile {
+      user-select: none;
+      cursor: pointer;
+      // text-align: center;
+      color: #ccc;
+      margin-left: 24px;
+      padding-bottom: 20px;
+      // border-bottom: 1px solid #334;
+      margin-bottom: 0px;
+      }
+
+    
+
+}
+
+
+
+::ng-deep {
+    .app-profile-menu {
+      // margin-left: -85px;
+      // width: 230px;
+      .app-profile-menu-user {
+        padding: 13px 14px 13px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #545454;
+        .app-profile-menu-name {
+          font-size: 15px;
+          color: #eee;
+          margin-bottom: 4px;
+        }
+        .app-profile-menu-email {
+          font-size: 13px;
+          color: #ddd;
+        }
+      }
+    }
+  }

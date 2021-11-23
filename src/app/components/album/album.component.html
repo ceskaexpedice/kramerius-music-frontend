@@ -107,14 +107,14 @@
 <mat-menu #playlistMenu="matMenu" class="app-playlist-menu">
     <ng-template matMenuContent let-track="track">
 
-        <button mat-menu-item (click)="onNewPlaylist()">
+        <button mat-menu-item (click)="onAddToNewPlaylist(track)">
             Přidat no nového playlist
         </button>
 
-        <ng-container *ngIf="playlists.playlists.length > 0">
+        <ng-container *ngIf="playlists.playlists && playlists.playlists.length > 0">
             <mat-divider></mat-divider>
-            <button mat-menu-item *ngFor="let playlist of playlists.playlists">
-                {{ playlist.name }}
+            <button mat-menu-item (click)="onAddToPlaylist(playlist, track)" *ngFor="let playlist of playlists.playlists">
+                {{ playlist.title }}
             </button>
         </ng-container>
         

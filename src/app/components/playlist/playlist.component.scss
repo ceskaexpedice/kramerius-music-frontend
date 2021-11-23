@@ -1,0 +1,224 @@
+@import './src/variables.scss';
+
+.app-album {
+    padding: 10px 10px;
+    margin: 0 auto;
+    max-width: 1100px;
+    .app-category {
+        padding-bottom: 20px;
+        margin-top: 20px;
+        .app-category-name {
+            margin-left: 15px;
+            font-size: 20px;
+            color: #aaa;
+            margin-bottom: 10px;
+            a {
+                color: #ddd;
+                font-weight: 500;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .app-albums {
+        overflow: hidden;
+        app-album-card {
+            display: block;
+            float: left;
+            margin: 5px;
+        }
+    }
+    .app-album-header {
+        padding: 20px;
+        overflow: hidden;
+        .app-album-image {
+            width: 250px;
+            height: 250px;
+            margin-right: 26px;
+            float: left;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .app-album-title-wrapper {
+            height: 180px;
+            display: flex;
+            .app-album-title {
+                font-size: 24px;
+                color: #ddd;
+                display: inline-block;
+                align-self: flex-end;
+                line-height: 32px;
+            }
+        }
+        
+        .app-album-bottom {
+            overflow: hidden;
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 10px;
+            height: 14px;
+            line-height: 14px;
+            .app-album-artist {
+                float: left;
+                color: #aaa;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            .app-divider {
+                float: left;
+                height: 4px;
+                width: 4px;
+                margin: 5px 8px;
+                border-radius: 50%;
+                background: #999;
+            }
+        }
+        .app-actions {
+            height: 46px;
+            overflow: hidden;
+            padding-top: 12px;
+            display: flex;
+            .app-button {
+                user-select: none;
+                cursor: pointer;
+                padding: 5px 12px 5px 8px;
+                font-size: 14px;
+                border-radius: 4px;
+                background: #111;
+                display: inline-block;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                margin-right: 14px;
+                border: 1px solid transparent;
+                mat-icon {
+                    margin-right: 6px;
+                }
+                &.app-button-play {
+                    background: $app-primary-color;
+                    color: #111;
+                    &:hover {
+                        color: #000;
+                        background: $app-primary-color-hl;
+                    }
+                }
+                &.app-button-like {
+                    color: $app-primary-color;
+                    border-color: $app-primary-color;
+                    &:hover {
+                        color: $app-primary-color-hl;
+                        border-color: $app-primary-color-hl;
+                    }
+                    mat-icon {
+                        font-size: 20px;
+                        line-height: 24px;
+                    }
+                }
+            }
+            .app-more {
+                color: #ccc;
+                user-select: none;
+                cursor: pointer;
+                margin-left: -4px;
+                margin-top: 5px;
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            .app-album-image {
+                width: 100px;
+                height: 100px;
+                margin-right: 16px;
+            }
+            .app-album-title-wrapper {
+                height: 30px;
+            }
+        }
+    }
+    .app-tracks {
+        padding: 20px 10px;
+        .app-track {
+            overflow: hidden;
+            cursor: pointer;
+            line-height: 40px;
+            height: 40px;
+            padding-right: 10px;
+            .app-track-left {
+                width: 50px;
+                float: left;      
+                .app-track-number {
+                    font-size: 15px;
+                    color: #777;
+                    margin-left: 10px;
+                }
+                .mat-icon {
+                    display: none;
+                    float: left;
+                    margin-top: 8px;
+                    margin-left: 3px;
+                    color: #ccc;
+                }
+            }
+            .app-track-artist {
+                color: #ccc;
+                word-break: break-all;
+                max-width: 300px;
+                float: right;
+                margin-left: 10px;
+            }
+            .app-source {
+                float: right; 
+                height: 18px; 
+                margin-top: 10px; 
+                margin-left: 20px; 
+                margin-right: 2px; 
+            }
+            .app-track-label {
+                display: flex;
+                .app-track-title {
+                    font-size: 15px;
+                    color: #ccc;
+                    word-break: break-all;
+                }
+                .app-divider {
+                    height: 4px;
+                    width: 4px;
+                    margin: 5px 8px;
+                    border-radius: 50%;
+                    background: #999;
+                    margin-top: 18px;
+                }
+                .app-track-unit {
+                    color: #999;
+                    word-break: break-all;
+                }
+            }
+            &:hover {
+                background-color: #26272c;
+                .app-track-left {
+                    .app-track-number {
+                        display: none;
+                    }
+                    .mat-icon {
+                        display: block;
+                    }
+                }
+            }
+            &.app-active {
+                font-weight: 700;
+                color: #fff;
+                .app-track-number {
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+<div class="app-sidebar">
+
+    <div class="app-logo">Kramerius Music</div> 
+
+    <div  class="app-profile" *ngIf="auth.isLoggedIn()">
+      <app-avatar [matMenuTriggerFor]="profileMenu" [size]="50" [image]="auth.user.image" [name]="auth.user.name" id="btn-dropdown-profile"></app-avatar>
+
+      <mat-menu #profileMenu="matMenu" class="app-profile-menu">
+        <div class="app-profile-menu-user">
+          <div class="app-profile-menu-name">{{ auth.user.name }}</div>
+          <div class="app-profile-menu-email">{{ auth.user.email }}</div>
+        </div>
+        <button mat-menu-item (click)="logout()">
+          <span>Odhlásit</span>
+        </button>
+      </mat-menu>
+
+    </div>
+
+
+
+
+    <div class="app-actions">
+        <a routerLink="/" class="app-action">Domů</a>
+        <a routerLink="/search" class="app-action">Hledat</a>
+        <a *ngIf="!auth.isLoggedIn()" routerLink="/login" class="app-action">Přihlásit</a>
+    </div>
+    <ng-container *ngIf="auth.isLoggedIn()">
+      <div class="app-label">Knihovna</div>
+      <a routerLink="/search" class="app-action">Alba</a>
+      <a routerLink="/search" class="app-action">Skladby</a>
+      <a routerLink="/search" class="app-action">Umělci</a>
+
+
+      <div class="app-label">Playlisty</div>
+      <a [routerLink]="['/', 'playlist', playlist.uid]" class="app-action" *ngFor="let playlist of playlists.playlists">
+        {{ playlist.title }}
+      </a>
+    </ng-container>
+
+
+
+
+
+<!-- 
+        <div [matMenuTriggerFor]="profileMenu" class="app-profile" *ngIf="auth.isLoggedIn()">
+            <app-avatar [size]="38" [image]="auth.user.image" [name]="auth.user.name" id="btn-dropdown-profile"></app-avatar>
+          
+            <mat-menu #profileMenu="matMenu" xPosition="before" class="app-profile-menu">
+              <div class="app-profile-menu-user">
+                <div class="app-profile-menu-name">{{ auth.user.name }}</div>
+                <div class="app-profile-menu-email">{{ auth.user.email }}</div>
+              </div>
+              <button mat-menu-item (click)="logout()">
+                <span>Odhlásit</span>
+              </button>
+            </mat-menu>
+        </div> -->
+
+
+</div>
+
+

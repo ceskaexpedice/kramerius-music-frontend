@@ -1,5 +1,8 @@
 <div class="app-content-wrapper" [class.app-player-visible]="player.visible">
-  <app-navbar></app-navbar>
-  <router-outlet></router-outlet>
+  <!-- <app-navbar></app-navbar> -->
+  <app-sidebar></app-sidebar>
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
   <app-player *ngIf="player.visible"></app-player>
 </div>

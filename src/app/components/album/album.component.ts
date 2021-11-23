@@ -102,7 +102,13 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
 
-  onNewPlaylist() {
+  onAddToPlaylist(playlist: Playlist, track: Track) {
+    this.api.addTrackToPlaylist(playlist, track).subscribe(() => {
+      playlist.tracks.push(track);
+    });
+  }
+
+  onAddToNewPlaylist(track: Track) {
     const data: SimpleDialogData = {
       title: "Zadejte název nového playlistu",
       message: "",
@@ -126,9 +132,14 @@ export class AlbumComponent implements OnInit, OnDestroy {
       if (result === 'create') {
         const value = data.textInput.value;
         if (value) {
-          const playlist = new Playlist();
-          playlist.name = value;
-          this.playlists.playlists.push(playlist);
+          const p = new Playlist();
+          p.title = value;
+          this.api.createPlaylist(p).subscribe((playlist: Playlist) => {
+            this.playlists.addPlaylist(playlist);
+            this.api.addTrackToPlaylist(playlist, track).subscribe(() => {
+              playlist.tracks.push(track);
+            });
+          });
         }
       }
     });
