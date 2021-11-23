@@ -1,11 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Album } from '../models/album.model';
+import { Track } from '../models/track.model';
 
 @Injectable()
 export class ApiService {
 
-  private static apiUrl = 'https://kramerius.mzk.cz';
+  // private static apiUrl = 'https://kramerius.mzk.cz';
+
+  private static apiUrl = 'http://localhost:3000/api';
+
+  private static sources: any = {
+    'mzk': 'https://kramerius.mzk.cz',
+    'nm': 'https://kramerius.nm.cz',
+    'kfbz': 'http://kramerius.kfbz.cz',
+    'mlp': 'https://kramerius4.mlp.cz'
+  };
+
+
   // private static apiUrl = 'https://kramerius.nm.cz';
   // private static apiUrl = 'https://kramerius4.mlp.cz';
   // private static apiUrl = 'http://kramerius.kfbz.cz';
@@ -29,69 +42,67 @@ export class ApiService {
     return this.http.delete(encodeURI(`${ApiService.apiUrl}${path}`), { params: params });
   }
 
+  // getAlbums(): Observable<any> {
+  //   const path = '/search/api/v5.0/search?'
+  //         + 'q=*:*&'
+  //         // + 'fq=fedora.model:monograph'
+  //         // + 'fq=fedora.model:sheetmusic'
+  //         // + 'fq=fedora.model:map'
+  //         // + 'fq=fedora.model:graphic'
+  //         + 'fq=fedora.model:soundrecording'
+  //         // + ' AND dostupnost:public'
+  //         + '&'
+  //         + 'fl=PID,dostupnost,dc.creator,keywords,dc.title,datum_str&'
+  //         // + 'facet=true&'
+  //         // + 'facet.mincount=1&'
+  //         // + 'facet.field=keywords&'
+  //         // + 'facet.field=facet_autor&'
+  //         + 'rows=3000&'
+  //         + 'start=0';
+  //   return this.get(path);
+  // }
+
   getAlbums(): Observable<any> {
-    const path = '/search/api/v5.0/search?'
-          + 'q=*:*&'
-          // + 'fq=fedora.model:monograph'
-          // + 'fq=fedora.model:sheetmusic'
-          // + 'fq=fedora.model:map'
-          // + 'fq=fedora.model:graphic'
-          + 'fq=fedora.model:soundrecording'
-          // + ' AND dostupnost:public'
-          + '&'
-          + 'fl=PID,dostupnost,dc.creator,keywords,dc.title,datum_str&'
-          // + 'facet=true&'
-          // + 'facet.mincount=1&'
-          // + 'facet.field=keywords&'
-          // + 'facet.field=facet_autor&'
-          + 'rows=3000&'
-          + 'start=0';
+    const path = '/albums'
     return this.get(path);
   }
 
-
-  getTracks(albumPid: string): Observable<any> {
-    const path = '/search/api/v5.0/search?'
-          + `q=root_pid:"${albumPid}"&`
-          + 'fq=fedora.model:track'
-          + '&'
-          + 'fl=PID,dostupnost,dc.title,model_path,pid_path,root_title,root_pid&'
-          + 'rows=3000&'
-          + 'start=0'
+  getTracks(album: Album): Observable<any> {
+    const path = `/albums/${album.pid}/tracks`
     return this.get(path);
+  }
+
+  getAlbumThumb(album: Album): string {
+    return this.getThumb(album.source, album.pid);
+  }
+
+  getThumb(source: string, pid: string): string {
+    return `${ApiService.sources[source]}/search/api/v5.0/item/${pid}/thumb`;
+  }
+
+  getMp3(track: Track): string {
+    return `${ApiService.sources[track.source]}/search/api/v5.0/item/${track.pid}/streams/MP3`;
   }
 
   findTracks(query: string, onlyPublic: boolean = false, limit: number = 20): Observable<any> {
     const q = query.trim();
-    let path = '/search/api/v5.0/search?'
-          + `q=dc.title:${q}*&`
-          + 'fq=fedora.model:track AND model_path:soundrecording/*';
+    let path = `/search/tracks?query=${q}`;
     if (onlyPublic) {
-      path += ' AND dostupnost:public';
+      path += '&accessibility=public';
     }
-    path += '&'
-          + 'fl=PID,dostupnost,dc.title,model_path,pid_path,root_title,root_pid&'
-          + `rows=${limit}&`
-          + 'start=0'
+    path += `&limit=${limit}`;
     return this.get(path);
   }
 
-  getUnits(albumPids: string[]): Observable<any> {
-    const path = '/search/api/v5.0/search?'
-          + `q=PID:"${albumPids.join('" OR PID:"')}"&`
-          + 'fl=PID,dostupnost,dc.title&'
-          + 'rows=3000&'
-          + 'start=0'
-    return this.get(path);
-  }
+  // getUnits(albumPids: string[]): Observable<any> {
+  //   const path = '/search/api/v5.0/search?'
+  //         + `q=PID:"${albumPids.join('" OR PID:"')}"&`
+  //         + 'fl=PID,dostupnost,dc.title&'
+  //         + 'rows=3000&'
+  //         + 'start=0'
+  //   return this.get(path);
+  // }
 
 
-  getThumb(pid: string): string {
-    return `${ApiService.apiUrl}/search/api/v5.0/item/${pid}/thumb`;
-  }
-
-  getMp3(pid: string): string {
-    return `${ApiService.apiUrl}/search/api/v5.0/item/${pid}/streams/MP3`;
-  }
 
 }

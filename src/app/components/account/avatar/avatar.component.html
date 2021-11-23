@@ -1,0 +1,2 @@
+<img *ngIf="image" class="app-profile-img" [src]="image" [style.width]="size + 'px'" [style.height]="size + 'px'">
+<div *ngIf="!image" class="app-profile-img app-profile-txt" [style.width]="size + 'px'" [style.height]="size + 'px'" [style.line-height]="(size - 2) + 'px'">{{ getTextProfileImage() }}</div>

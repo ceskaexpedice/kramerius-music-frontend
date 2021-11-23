@@ -20,6 +20,12 @@ import { AppComponent } from './components/app.component';
 import { SearchComponent } from './components/search/search.component';
 import { SimpleDialogComponent } from './dialogs/simple-dialog/simple-dialog.component';
 import { PlaylistService } from './services/playlist-service';
+import { AvatarComponent } from './components/account/avatar/avatar.component';
+import { LoginComponent } from './components/account/login/login.component';
+import { AuthService } from './services/auth.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { AngularTokenModule } from 'angular-token';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,8 +38,9 @@ import { PlaylistService } from './services/playlist-service';
     PlayerComponent,
     NavbarComponent,
     SearchComponent,
-    SimpleDialogComponent
-
+    SimpleDialogComponent,
+    AvatarComponent,
+    LoginComponent
   ],
   imports: [
     // CommonModule,
@@ -43,13 +50,24 @@ import { PlaylistService } from './services/playlist-service';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AngularTokenModule.forRoot({
+      apiBase: environment.apiBase,
+      oAuthBase: environment.apiBase,
+      oAuthCallbackPath: 'omniauth',
+      oAuthPaths: {
+        google: 'auth/google_oauth2'
+      },
+      oAuthWindowType: 'newWindow'
+    })
   ],
   providers: [
     ApiService,
     DataService,
     PlayerService,
-    PlaylistService
+    PlaylistService,
+    AuthService,
+    LocalStorageService
   ],
   entryComponents: [
     SimpleDialogComponent

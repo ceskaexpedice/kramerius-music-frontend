@@ -25,8 +25,9 @@
       <div class="app-albums" *ngIf="albums && albums.length > 0">
       <div class="app-label">Alba</div>
         <a class="app-result" *ngFor="let album of albums" [routerLink]="['/album', album.pid]">
+          <img class="app-source" [src]="'/assets/images/logo_' + album.source + '.png'">
           <div class="app-thumb-wrapper">
-            <div class="app-thumb" [style.background-image]="thumb(album.pid)"></div>
+            <div class="app-thumb" [style.background-image]="thumb(album)"></div>
             <mat-icon class="app-play-icon" (click)="playAlbum($event, album)">play_arrow</mat-icon>
           </div>
           <div class="app-title">{{ album.title }}</div>
@@ -39,8 +40,9 @@
       <div class="app-albums" *ngIf="tracks && tracks.length > 0">
         <div class="app-label">Skladby</div>
         <a class="app-result" *ngFor="let track of tracks" [routerLink]="['/album', track.album.pid]">
+          <img class="app-source" [src]="'/assets/images/logo_' + track.source + '.png'">
           <div class="app-thumb-wrapper">
-            <div class="app-thumb" [style.background-image]="thumb(track.album.pid)"></div>
+            <div class="app-thumb" [style.background-image]="thumb(track.album)"></div>
             <mat-icon class="app-play-icon" (click)="playTrack($event, track)">play_arrow</mat-icon>
           </div>
           <div class="app-title">{{ track.title }}</div>

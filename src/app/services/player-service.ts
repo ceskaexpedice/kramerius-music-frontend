@@ -50,7 +50,7 @@ export class PlayerService {
     this.canPlay = false;
     this.playing = false;
     this.progress = 0;
-    const url = this.api.getMp3(this.track.pid);
+    const url = this.api.getMp3(this.track);
     if (this.audio) {
       this.audio.setAttribute('src', url);
       this.audio.load();
@@ -145,7 +145,7 @@ export class PlayerService {
   }
 
   getAlbumImage() {
-    return this.api.getThumb(this.track.albumPid);
+    return this.api.getAlbumThumb(this.track.album);
   }
 
   private formatTime(secs: number) {

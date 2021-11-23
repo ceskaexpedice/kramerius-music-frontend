@@ -7,6 +7,7 @@ export class Album {
   genres: string[];
   isPrivate: boolean;
   date: string;
+  source: string;
 
   constructor() {
   }
@@ -32,12 +33,13 @@ export class Album {
 
   static fromJson(json: any): Album {
     const album = new Album();
-    album.pid = json['PID'];
-    album.title = json['dc.title'];
-    album.artists = json['dc.creator'] || [];
-    album.genres = json['keywords'] || [];
-    album.isPrivate = json['dostupnost'] == 'private';
-    album.date = json['datum_str'];
+    album.pid = json['pid'];
+    album.title = json['title'];
+    album.artists = json['artists'] || [];
+    album.genres = json['genres'] || [];
+    album.isPrivate = json['is_private']
+    album.date = json['date'];
+    album.source = json['source'];
     return album;
   }
 
@@ -48,5 +50,21 @@ export class Album {
     }
     return result;
   }
+
+
+  sourceName(): string {
+    if (this.source == 'mzk') {
+      return "Moravská zemská knihovna v Brně";
+    } else if (this.source == 'kfbz') {
+      return "Krajská knihovna Františka Bartoše ve Zlíně";
+    } else if (this.source == 'mlp') {
+      return "Městská knihovna v Praze";
+    } else if (this.source == 'nm') {
+      return "Národní muzeum";
+    } 
+    return "";
+  }
+
+
 
 }

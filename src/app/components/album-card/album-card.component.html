@@ -2,6 +2,7 @@
     <div class="app-thumb-wrapper">
         <div class="app-thumb" [style.background-image]="thumb()">
             <mat-icon (click)="playAlbum($event, album)">play_arrow</mat-icon>
+            <img class="app-source" [src]="'/assets/images/logo_' + album.source + '.png'">
         </div>
     </div>
     <div class="app-title">{{ album.title }}</div>

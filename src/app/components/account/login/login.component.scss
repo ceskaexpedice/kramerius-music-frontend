@@ -1,0 +1,43 @@
+.app-google-auth {
+  margin: 40px auto 46px;
+  display: block;
+  color: #242428;
+  background-color: #fff;
+  background-size: 24px;
+  background-position: 16px center;
+  background-repeat: no-repeat;
+  font-size: 14px;
+  position: relative;
+  text-align: center;
+  border: 1px solid #dfdfe8;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 50px;
+  padding-right: 20px;
+  background-image: url('/assets/images/ic_google.png');
+}
+.app-login-label {
+  font-size: 12px;
+  color: #999;
+  padding-top: 15px;
+  border-top: 1px solid #ccc;
+}
+.app-forgot-password {
+  font-size: 14px;
+  float: right;
+  margin-top: 6px;
+  a {
+    text-decoration: none;
+  }
+}
+.app-login-register {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #777;
+  a {
+    margin-left: 2px;
+    display: inline-block;
+    text-decoration: none;
+  }
+}

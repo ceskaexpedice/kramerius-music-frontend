@@ -61,8 +61,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  thumb(pid: string): any {
-    const url = this.api.getThumb(pid);
+  thumb(album: Album): any {
+    const url = this.api.getAlbumThumb(album);
     return this._sanitizer.bypassSecurityTrustStyle(`url(${url})`);
   }
 

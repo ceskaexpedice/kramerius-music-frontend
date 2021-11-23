@@ -6,26 +6,27 @@ export class Track {
   pid: string;
   title: string;
   isPrivate: boolean;
-  unitPid: string;
-  unit: Unit;
+  source: string;
   albumPid: string;
   album: Album;
+  unit: string;
+
+
+  // unitPid: string;
+  // unit: Unit;
+
 
   constructor() {
   }
 
   static fromJson(json: any): Track {
-    console.log('json', json);
     const track = new Track();
-    track.pid = json['PID'];
-    track.title = json['dc.title'];
-    track.albumPid = json['root_pid'];
-    track.isPrivate = json['dostupnost'] == 'private';
-    const models = json['model_path'][0].split('/');
-    const pids = json['pid_path'][0].split('/');
-    if (models.length >= 2 && models[models.length - 2] == 'soundunit' && pids.length >= 2) {
-      track.unitPid = pids[pids.length - 2];
-    }
+    track.pid = json['pid'];
+    track.title = json['title'];
+    track.unit = json['unit'];
+    track.isPrivate = json['is_private'];
+    track.albumPid = json['album_pid'];
+    track.source = json['source'];
     return track;
   }
 

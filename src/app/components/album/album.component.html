@@ -2,6 +2,7 @@
 
 
 <div class="app-album-header">
+    <!-- <img [src]="'/assets/images/logo_' + album.source + '.png'"> -->
     <div class="app-album-image">
         <img [src]="getImage()">
     </div>
@@ -12,9 +13,13 @@
         <a [routerLink]="['/artist', encode(album.artist())]" class="app-album-artist">{{ album.artist() }}</a>
         <ng-container *ngIf="album.date">
             <div class="app-divider"></div>
-            <div class="app-album-date">{{ album.date }}</div>
+            <div class="app-album-date" style="float: left;">{{ album.date }}</div>
         </ng-container>
+        <div class="app-divider"></div>
+        <div class="app-album-date">{{ album.sourceName() }}</div>
+
     </div>
+    <!-- <div class="app-album-bottom">{{ album.sourceName() }}</div> -->
     <div class="app-actions">
         <div class="app-button app-button-play" (click)="playAlbum()">
             <mat-icon>play_arrow</mat-icon>
@@ -48,7 +53,7 @@
             </div>
             <ng-container *ngIf="track.unit">
                 <div class="app-divider"></div>
-                <div class="app-track-unit">{{ track.unit.title }}</div>
+                <div class="app-track-unit">{{ track.unit }}</div>
             </ng-container>
         </div>
     </div>

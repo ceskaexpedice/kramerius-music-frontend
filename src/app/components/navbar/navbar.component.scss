@@ -14,6 +14,7 @@
         font-size: 19px;
         margin-top: 12px;
         line-height: 38px;
+        margin-left: 14px;
         mat-icon {
             font-size: 38px;
             width: 38px;
@@ -41,5 +42,36 @@
         }
     }
 
+    .app-profile {
+        margin-top: 8px;
+        cursor: pointer;
+        margin-right: 10px;
+        margin-left: 10px;
+        width: 38px;
+        float: right;
+      }
+      
+
+
 }
 
+
+
+::ng-deep {
+    .app-profile-menu {
+      .app-profile-menu-user {
+        padding: 13px 14px 13px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #323232;
+        .app-profile-menu-name {
+          font-size: 15px;
+          color: #eee;
+          margin-bottom: 4px;
+        }
+        .app-profile-menu-email {
+          font-size: 13px;
+          color: #ddd;
+        }
+      }
+    }
+  }

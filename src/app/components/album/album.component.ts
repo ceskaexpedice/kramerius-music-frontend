@@ -50,9 +50,11 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
 
   initAlbum(album: Album) {
+    console.log('initAlbum')
     this.album = album;
     this.data.getTracks(album, (tracks: Track[]) => {
       this.tracks = tracks;
+      console.log('tracks', tracks);
     });
     this.albumsByArtist = [];
     this.albumsByGenre = [];
@@ -78,7 +80,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   getImage(): string {
-    return this.api.getThumb(this.album.pid);
+    return this.api.getAlbumThumb(this.album);
   }
 
   playTrack(track: Track) {

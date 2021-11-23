@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularTokenService } from 'angular-token';
+import { AuthService } from '../services/auth.service';
 import { PlayerService } from '../services/player-service';
 
 @Component({
@@ -9,8 +11,13 @@ import { PlayerService } from '../services/player-service';
 
 export class AppComponent implements OnInit {
 
-  constructor(public player: PlayerService) { }
+  constructor(public player: PlayerService, private auth: AuthService, private tokenService: AngularTokenService) { }
 
   ngOnInit() {
+    this.tokenService.validateToken().subscribe(
+      () => {
+        this.auth.afterLogin();
+      })
   }
+
 }

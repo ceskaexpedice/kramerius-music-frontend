@@ -21,6 +21,14 @@
         background-position: top center;
         background-size: contain;
         position: relative;
+        .app-source {
+            position: absolute;
+            width:  14px;
+            bottom: -42px;
+            right: 0px;
+            // opacity: 0.99;
+            // background: #00000055;
+        }
         mat-icon {
             position: absolute;
             display: none;
@@ -61,6 +69,7 @@
         word-break: break-all;
         text-decoration: none;
         display: block;
+        padding-right: 20px;
         &:hover {
             // color: #111;
             text-decoration: underline;

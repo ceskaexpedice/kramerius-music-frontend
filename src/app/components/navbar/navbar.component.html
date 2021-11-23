@@ -1,12 +1,32 @@
 <div class="app-navbar">
 
     <a class="app-logo" [routerLink]="['/']">
-        <mat-icon>play_circle</mat-icon>
+        <!-- <mat-icon>play_circle</mat-icon> -->
         <div class="app-logo-title">Kramerius Music</div> 
     </a>
     <div class="app-space"></div>
     <div class="app-actions">
         <a routerLink="/search" class="app-action">Hledat</a>
+
+        <a *ngIf="!auth.isLoggedIn()" routerLink="/login" class="app-action">Přihlásit</a>
+
+
+        <div [matMenuTriggerFor]="profileMenu" class="app-profile" *ngIf="auth.isLoggedIn()">
+            <app-avatar [size]="38" [image]="auth.user.image" [name]="auth.user.name" id="btn-dropdown-profile"></app-avatar>
+          
+            <mat-menu #profileMenu="matMenu" xPosition="before" class="app-profile-menu">
+              <div class="app-profile-menu-user">
+                <div class="app-profile-menu-name">{{ auth.user.name }}</div>
+                <div class="app-profile-menu-email">{{ auth.user.email }}</div>
+              </div>
+              <button mat-menu-item (click)="logout()">
+                <span>Odhlásit</span>
+              </button>
+            </mat-menu>
+        </div>
+
+
+
     </div>
 
 </div>

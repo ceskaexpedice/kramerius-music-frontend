@@ -27,7 +27,7 @@ export class DataService {
 
   init(input: any) {
     console.log('input', input);
-    this.albums = Album.fromJsonArray(input['response']['docs']);
+    this.albums = Album.fromJsonArray(input);
     console.log('albums', this.albums);
 
     this.genres = [];
@@ -92,41 +92,42 @@ export class DataService {
 
 
   getTracks(album: Album, callback: (track: Track[]) => void) {
-    this.api.getTracks(album.pid).subscribe(response => {
-      const units:string[] = [];
-      const tracks = Track.fromJsonArray(response['response']['docs']);
+    this.api.getTracks(album).subscribe(response => {
+      // const units:string[] = [];
+      const tracks = Track.fromJsonArray(response);
       for (const track of tracks) {
-        if (units.indexOf(track.unitPid) < 0) {
-          units.push(track.unitPid);
-        }
+        // if (units.indexOf(track.unitPid) < 0) {
+        //   units.push(track.unitPid);
+        // }
         track.album = album;
       }
-      if (units.length == 0) {
-        callback(tracks);
-      } else {
-        this.api.getUnits(units).subscribe((response) => {
-          const uMap: {[ key: string]: Unit } = {};
-          for (const u of response['response']['docs']) {
-            uMap[u['PID']] = Unit.fromJson(u);
-          }
-          for (const track of tracks) {
-            track.unit = uMap[track.unitPid];
-          }
-          console.log('tracks', tracks);
-          callback(tracks);
-        });
-      }
+      callback(tracks);
+      // if (units.length == 0) {
+      //   callback(tracks);
+      // } else {
+      //   this.api.getUnits(units).subscribe((response) => {
+      //     const uMap: {[ key: string]: Unit } = {};
+      //     for (const u of response['response']['docs']) {
+      //       uMap[u['PID']] = Unit.fromJson(u);
+      //     }
+      //     for (const track of tracks) {
+      //       track.unit = uMap[track.unitPid];
+      //     }
+      //     console.log('tracks', tracks);
+      //     callback(tracks);
+      //   });
+      // }
     });
   }
 
   findTracks(query: string, onlyPublic: boolean, callback: (track: Track[]) => void) {
     this.api.findTracks(query, onlyPublic, 10).subscribe(response => {
-      const units: string[] = [];
-      const tracks = Track.fromJsonArray(response['response']['docs']);
+      // const units: string[] = [];
+      const tracks = Track.fromJsonArray(response);
       for (const track of tracks) {
-        if (units.indexOf(track.unitPid) < 0) {
-          units.push(track.unitPid);
-        }
+        // if (units.indexOf(track.unitPid) < 0) {
+        //   units.push(track.unitPid);
+        // }
         for (const album of this.albums) {
           if (album.pid == track.albumPid) {
             track.album = album;

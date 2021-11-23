@@ -1,0 +1,20 @@
+<div class="app-account-dialog-wrapper">
+
+
+  <div class="app-account-dialog">
+    <mat-spinner *ngIf="state == 'loading'" [strokeWidth]="3" [diameter]="30">
+    </mat-spinner>
+    <div class="app-dialog-content">
+
+      <button mat-button [disabled]="state == 'loading'" class="app-social-auth app-google-auth"
+        (click)="loginWithGoogle()">Přihlaste se Google účtem
+      </button>
+
+    </div>
+    <div *ngIf="state === 'failure'" class="app-error">{{ message }}</div>
+
+  </div>
+
+
+
+</div>
