@@ -52,6 +52,10 @@
             <div class="app-track-title">
                 {{ track.title }}
             </div>
+            <ng-container *ngIf="track.unit">
+                <div class="app-divider"></div>
+                <div class="app-track-unit">{{ track.unit }}</div>
+            </ng-container>
             <ng-container *ngIf="track.album">
                 <div class="app-divider"></div>
                 <div class="app-track-unit">{{ track.album.title }}</div>

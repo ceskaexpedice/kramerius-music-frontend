@@ -3,7 +3,7 @@
     <div class="app-logo">Kramerius Music</div> 
 
     <div  class="app-profile" *ngIf="auth.isLoggedIn()">
-      <app-avatar [matMenuTriggerFor]="profileMenu" [size]="50" [image]="auth.user.image" [name]="auth.user.name" id="btn-dropdown-profile"></app-avatar>
+      <app-avatar [matMenuTriggerFor]="profileMenu" [size]="40" [image]="auth.user.image" [name]="auth.user.name" id="btn-dropdown-profile"></app-avatar>
 
       <mat-menu #profileMenu="matMenu" class="app-profile-menu">
         <div class="app-profile-menu-user">
