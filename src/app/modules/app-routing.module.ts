@@ -4,7 +4,9 @@ import { LoginComponent } from '../components/account/login/login.component';
 import { OmniauthComponent } from '../components/account/omniauth/omniauth.component';
 import { AlbumComponent } from '../components/album/album.component';
 import { ArtistComponent } from '../components/artist/artist.component';
+import { ArtistsComponent } from '../components/artists/artists.component';
 import { GenreComponent } from '../components/genre/genre.component';
+import { GenresComponent } from '../components/genres/genres.component';
 import { HomeComponent } from '../components/home/home.component';
 import { PlaylistComponent } from '../components/playlist/playlist.component';
 import { SearchComponent } from '../components/search/search.component';
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'genre/:genre', component: GenreComponent },
   { path: 'album/:pid', component: AlbumComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'genres', component: GenresComponent },
+  { path: 'artists', component: ArtistsComponent },
 
   { path: 'playlist/:uid', component: PlaylistComponent },
 

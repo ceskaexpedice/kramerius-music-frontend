@@ -18,13 +18,14 @@
     </div>
 
 
+    <a routerLink="/" class="app-action">Domů</a>
+    <a routerLink="/search" class="app-action">Hledat</a>
+    <a *ngIf="!auth.isLoggedIn()" routerLink="/login" class="app-action">Přihlásit</a>
 
+    <div class="app-label">Procházet</div>
+    <a routerLink="/genres" class="app-action">Žánry</a>
+    <a routerLink="/artists" class="app-action">Umělci</a>
 
-    <div class="app-actions">
-        <a routerLink="/" class="app-action">Domů</a>
-        <a routerLink="/search" class="app-action">Hledat</a>
-        <a *ngIf="!auth.isLoggedIn()" routerLink="/login" class="app-action">Přihlásit</a>
-    </div>
     <ng-container *ngIf="auth.isLoggedIn()">
       <div class="app-label">Knihovna</div>
       <a routerLink="/search" class="app-action">Alba</a>

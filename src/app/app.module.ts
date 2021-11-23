@@ -28,6 +28,8 @@ import { AngularTokenModule } from 'angular-token';
 import { environment } from 'src/environments/environment';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
+import { GenresComponent } from './components/genres/genres.component';
+import { ArtistsComponent } from './components/artists/artists.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { PlaylistComponent } from './components/playlist/playlist.component';
     AvatarComponent,
     LoginComponent,
     SidebarComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    GenresComponent,
+    ArtistsComponent
   ],
   imports: [
     // CommonModule,

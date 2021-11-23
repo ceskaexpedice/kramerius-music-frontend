@@ -1,0 +1,5 @@
+<div class="app-genres" *ngIf="data.ready">
+
+    <a class="app-item" *ngFor="let category of data.getTopGenres(500)" [routerLink]="['/genre', encode(category.value)]">{{ category.value }}</a>
+ 
+</div>

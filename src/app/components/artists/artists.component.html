@@ -1,0 +1,5 @@
+<div class="app-artists" *ngIf="data.ready">
+
+    <a class="app-item" *ngFor="let category of data.getTopArtists(500)" [routerLink]="['/artist', encode(category.value)]">{{ category.value }}</a>
+ 
+</div>
