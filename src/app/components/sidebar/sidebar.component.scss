@@ -3,6 +3,8 @@
 .app-sidebar {
     width: 200px;
     height: 100%;
+    overflow: auto;
+    padding-bottom: 10px;
     background: #131314;
     border-right: 1px solid #2c2c2c;
     .app-logo {
@@ -24,6 +26,7 @@
       color: #666;
     }
     .app-action {
+        
         line-height: 32px;
         display: block;
         margin-right: 10px;
@@ -33,10 +36,17 @@
         font-size: 15px;
         color: #ccc;
         cursor: pointer;
-        // font-weight: 500;
+        &.app-main-action {
+          display: flex;
+          flex-direction: row;
+          line-height: 40px;
+          mat-icon {
+            margin-top: 8px;
+            margin-right: 8px;
+          }
+        }
         &:hover {
             color: #fff;
-            // background: #333;
         }
     }
 

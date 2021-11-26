@@ -48,6 +48,11 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     });
   }
 
+  playPlaylist() {
+    this.player.setTracks(this.playlist.tracks);
+    this.player.playFirst();
+  }
+
   playTrack(track: Track) {
     if (this.player.isActive(track)) {
       if (this.player.playing) {
@@ -69,6 +74,17 @@ export class PlaylistComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dataStatusSubscription.unsubscribe();
+  }
+
+  trackCountText(): string {
+    const count = this.playlist.tracks.length;
+    if (count == 1) {
+      return "1 skladba";
+    } else if (count < 5) {
+      return count + " skladby";
+    } else {
+      return count + " skladeb";
+    }
   }
 
 }

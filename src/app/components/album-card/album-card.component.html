@@ -1,7 +1,9 @@
 <a class="app-album" [routerLink]="['/album', album.pid]">
     <div class="app-thumb-wrapper">
         <div class="app-thumb" [style.background-image]="thumb()">
-            <mat-icon (click)="playAlbum($event, album)">play_arrow</mat-icon>
+            <mat-icon class="app-icon-play" (click)="playAlbum($event, album)">play_arrow</mat-icon>
+            <mat-icon class="app-icon-lock" *ngIf="album.isPrivate">lock</mat-icon>
+
             <img class="app-source" [src]="'/assets/images/logo_' + album.source + '.png'">
         </div>
     </div>

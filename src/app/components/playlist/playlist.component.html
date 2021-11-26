@@ -1,36 +1,24 @@
-<div class="app-album" *ngIf="data.ready && playlist ">
+<div class="app-playlist" *ngIf="data.ready && playlist ">
 
 
-<!-- <div class="app-album-header">
-    <div class="app-album-image">
-        <img [src]="getImage()">
-    </div>
-    <div class="app-album-title-wrapper">
-        <div class="app-album-title">{{ album.title }}</div>
-    </div>
-    <div class="app-album-bottom">
-        <a [routerLink]="['/artist', encode(album.artist())]" class="app-album-artist">{{ album.artist() }}</a>
-        <ng-container *ngIf="album.date">
-            <div class="app-divider"></div>
-            <div class="app-album-date" style="float: left;">{{ album.date }}</div>
-        </ng-container>
-        <div class="app-divider"></div>
-        <div class="app-album-date">{{ album.sourceName() }}</div>
-
+<div class="app-playlist-header">
+    <div class="app-playlist-title">{{ playlist.title }}</div>
+    <div class="app-playlist-bottom">
+        <span>{{ trackCountText() }}</span>
     </div>
     <div class="app-actions">
-        <div class="app-button app-button-play" (click)="playAlbum()">
+        <div class="app-button app-button-play" (click)="playPlaylist()">
             <mat-icon>play_arrow</mat-icon>
             Přehrát
         </div>
-        <div class="app-button app-button-like" (click)="playAlbum()">
+        <div class="app-button app-button-like" (click)="playPlaylist()">
             <mat-icon>library_add</mat-icon>
             Přidat do knihovny
         </div>
-        <mat-icon class="app-more" [matMenuTriggerFor]="albumMenu">more_vert</mat-icon>
+        <mat-icon class="app-more" [matMenuTriggerFor]="playlistMenu">more_vert</mat-icon>
 
     </div>
-</div> -->
+</div>
 
 <div class="app-tracks">
     <div class="app-track" [class.app-active]="player.isActive(track)" (click)="playTrack(track)" *ngFor="let track of playlist.tracks; let index = index;">
@@ -85,6 +73,36 @@
             Přidat do knihovny
         </button>
 
+
+    </ng-template>
+</mat-menu>
+
+
+
+<mat-menu #playlistMenu="matMenu" class="app-album-menu">
+    <ng-template matMenuContent let-track="track">
+  
+        <button mat-menu-item>
+            <mat-icon>shuffle</mat-icon>
+            Přehrát náhodně
+        </button>
+        <button mat-menu-item>
+            <mat-icon>queue_music</mat-icon>
+            Přidat do fronty
+        </button>
+        <button mat-menu-item>
+            <mat-icon>playlist_play</mat-icon>
+            Přehrát jako další
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+            <mat-icon>library_add</mat-icon>
+            Přidat do knihovny
+        </button>
+        <button mat-menu-item>
+            <mat-icon>playlist_add</mat-icon>
+            Přidat do playlistu
+        </button>
 
     </ng-template>
 </mat-menu>

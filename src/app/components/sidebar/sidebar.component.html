@@ -18,9 +18,18 @@
     </div>
 
 
-    <a routerLink="/" class="app-action">Domů</a>
-    <a routerLink="/search" class="app-action">Hledat</a>
-    <a *ngIf="!auth.isLoggedIn()" routerLink="/login" class="app-action">Přihlásit</a>
+    <a routerLink="/" class="app-action app-main-action2">
+      <!-- <mat-icon>home</mat-icon> -->
+      Domů
+    </a>
+    <a routerLink="/search" class="app-action app-main-action2">
+      <!-- <mat-icon>search</mat-icon> -->
+      Hledat
+    </a>
+    <a *ngIf="!auth.isLoggedIn()" routerLink="/login" class="app-action app-main-action2">
+      <!-- <mat-icon>login</mat-icon> -->
+      Přihlásit
+    </a>
 
     <div class="app-label">Procházet</div>
     <a routerLink="/genres" class="app-action">Žánry</a>

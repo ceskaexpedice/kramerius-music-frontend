@@ -28,9 +28,12 @@
           <img class="app-source" [src]="'/assets/images/logo_' + album.source + '.png'">
           <div class="app-thumb-wrapper">
             <div class="app-thumb" [style.background-image]="thumb(album)"></div>
-            <mat-icon class="app-play-icon" (click)="playAlbum($event, album)">play_arrow</mat-icon>
+            <mat-icon class="app-icon-play" (click)="playAlbum($event, album)">play_arrow</mat-icon>
           </div>
-          <div class="app-title">{{ album.title }}</div>
+          <div class="app-title">{{ album.title }}
+            <mat-icon class="app-icon-lock" *ngIf="album.isPrivate">lock</mat-icon>
+
+          </div>
           <a class="app-artist" [routerLink]="['/artist', album.encodedArtist()]">{{ album.artist() }}</a>
         </a>
       </div>
@@ -43,9 +46,11 @@
           <img class="app-source" [src]="'/assets/images/logo_' + track.source + '.png'">
           <div class="app-thumb-wrapper">
             <div class="app-thumb" [style.background-image]="thumb(track.album)"></div>
-            <mat-icon class="app-play-icon" (click)="playTrack($event, track)">play_arrow</mat-icon>
+            <mat-icon class="app-icon-play" (click)="playTrack($event, track)">play_arrow</mat-icon>
           </div>
-          <div class="app-title">{{ track.title }}</div>
+          <div class="app-title">{{ track.title }}
+            <mat-icon class="app-icon-lock" *ngIf="track.isPrivate">lock</mat-icon>
+          </div>
 
           <div class="app-artist" style="max-width: 40%;">{{ track.album.title }}</div>
           <div class="app-artist app-divider"></div>
