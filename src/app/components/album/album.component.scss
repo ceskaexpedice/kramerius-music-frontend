@@ -170,6 +170,16 @@
             .app-track-label {
                 display: flex;
                 .app-track-title {
+                    .app-icon-lock {
+                        font-size: 16px;
+                        line-height: 16px;
+                        height: 18px;
+                        vertical-align: middle;
+                        width: 16px;
+                        color: #cccccc;
+                        margin-right: 3px;
+                        margin-left: -4px;
+                    }
                     font-size: 15px;
                     color: #ccc;
                     word-break: break-all;

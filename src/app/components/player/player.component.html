@@ -88,8 +88,11 @@
                 <mat-icon *ngIf="player.playing" (click)="player.pause()" class="app-player-play">pause_circle</mat-icon>
                 <mat-icon [class.app-disabled]="!player.hasNext()" (click)="player.playNext()">skip_next</mat-icon>
             </div>
-            <div class="app-player-duration" *ngIf="player.trackDurationText">
+            <div class="app-player-duration" *ngIf="!player.error && player.trackDurationText">
                 {{ player.trackPositionText }} / {{ player.trackDurationText }}
+            </div>
+            <div class="app-player-error" *ngIf="player.error">
+                {{ player.error }}
             </div>
         </div>
 

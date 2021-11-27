@@ -49,6 +49,7 @@
         </div>
         <div class="app-track-label">
             <div class="app-track-title">
+                <mat-icon class="app-icon-lock" *ngIf="track.isPrivate">lock</mat-icon>
                 {{ track.title }}
             </div>
             <ng-container *ngIf="track.unit">

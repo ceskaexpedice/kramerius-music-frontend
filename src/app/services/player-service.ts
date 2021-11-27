@@ -5,6 +5,8 @@ import { ApiService } from './api-service';
 @Injectable()
 export class PlayerService {
 
+  error: string;
+
   visible = false;
   tracks: Track[];
   track: Track;
@@ -50,6 +52,8 @@ export class PlayerService {
     this.canPlay = false;
     this.playing = false;
     this.progress = 0;
+    this.error = null;
+    this.trackDurationText = "";
     const url = this.api.getMp3(this.track);
     if (this.audio) {
       this.audio.setAttribute('src', url);
@@ -81,6 +85,15 @@ export class PlayerService {
     this.audio.oncanplay = () => {
       this.canPlay = true;
       this.play();
+    };
+    this.audio.onerror = (er: any) => {
+      this.canPlay = false;
+      console.log('onError', er);
+      if (this.track.isPrivate) {
+        this.error = 'Skladba není veřejně dostupná';
+      } else {
+        this.error = 'Skladbu se nepodařilo načíst';
+      }
     };
   }
 
