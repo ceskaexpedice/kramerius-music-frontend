@@ -63,15 +63,35 @@
         }
     }
     .app-title {
-        color: #ddd;
-        font-size: 14px;
-        line-height: 20px;
-        height: 20px;
         overflow: hidden;
-        font-weight: 500;
+        display: flex;
         margin-top: 4px;
-        white-space: pre-line;
-        word-break: break-all;
+        height: 20px;
+        .app-title-title {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            overflow: hidden;
+            font-weight: 500;
+            white-space: pre-line;
+            word-break: break-all;
+            float: left;
+        }
+        &.app-locked {
+            // .app-title-title {
+            //     // max-width: calc(100% - 50px);
+            // }
+            .app-icon-lock {
+                font-size: 14px;
+                line-height: 20px;
+                height: 20px;
+                width: 20px;
+                margin-left: 2px;
+                color: #ccc;
+            }
+        }
+
     }
     .app-artist {
         color: #aaa;

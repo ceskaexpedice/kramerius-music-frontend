@@ -5,13 +5,14 @@ import { Album } from '../models/album.model';
 import { Track } from '../models/track.model';
 import { Playlist } from '../models/playlist.model';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiService {
 
   // private static apiUrl = 'https://kramerius.mzk.cz';
 
-  private static apiUrl = 'http://localhost:3000/api';
+  private static apiUrl = environment.apiBase + '/api';
 
   private static sources: any = {
     'mzk': 'https://kramerius.mzk.cz',

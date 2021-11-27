@@ -2,11 +2,13 @@
     <div class="app-thumb-wrapper">
         <div class="app-thumb" [style.background-image]="thumb()">
             <mat-icon class="app-icon-play" (click)="playAlbum($event, album)">play_arrow</mat-icon>
-            <mat-icon class="app-icon-lock" *ngIf="album.isPrivate">lock</mat-icon>
-
+            <!-- <mat-icon class="app-icon-lock" *ngIf="album.isPrivate">lock</mat-icon> -->
             <img class="app-source" [src]="'/assets/images/logo_' + album.source + '.png'">
         </div>
     </div>
-    <div class="app-title">{{ album.title }}</div>
+    <div class="app-title" [class.app-locked]="album.isPrivate">
+        <div class="app-title-title">{{ album.title }}</div>
+        <mat-icon class="app-icon-lock" *ngIf="album.isPrivate">lock</mat-icon>
+    </div>
     <a class="app-artist" (click)="$event.stopPropagation(); $event.preventDefault();" [routerLink]="['/artist', album.encodedArtist()]">{{ album.artist() }}</a>
 </a>

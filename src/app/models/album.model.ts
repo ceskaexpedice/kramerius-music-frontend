@@ -34,7 +34,7 @@ export class Album {
   static fromJson(json: any): Album {
     const album = new Album();
     album.pid = json['pid'];
-    album.title = json['title'];
+    album.title = json['title'] ? json['title'].trim() : "";
     album.artists = json['artists'] || [];
     album.genres = json['genres'] || [];
     album.isPrivate = json['is_private']
