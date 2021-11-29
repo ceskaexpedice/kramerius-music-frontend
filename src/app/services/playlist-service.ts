@@ -8,18 +8,38 @@ export class PlaylistService {
   playlists: Playlist[] = [];
 
   constructor(private api: ApiService) {
-    // this.playlists = [];
-    this.api.getPlaylists().subscribe((playlists: Playlist[]) => {
-      this.playlists = playlists;
-      // console.log('pl', playlists);
-      this.sortPlaylists();
-    });
   }  
 
+  reload() {
+    this.api.getPlaylists().subscribe((playlists: Playlist[]) => {
+      this.playlists = playlists;
+      this.sortPlaylists();
+    });
+  }
 
   addPlaylist(playlist: Playlist) {
     this.playlists.push(playlist);
     this.sortPlaylists();
+  }
+
+  removePlaylist(uid: string) {
+    const playlist = this.getPlaylistByUid(uid);
+    this.playlists.splice(this.playlists.indexOf(playlist), 1);
+  }
+
+  renamePlaylist(uid: string, title: string) {
+    const playlist = this.getPlaylistByUid(uid);
+    playlist.title = title;
+    this.sortPlaylists();
+  }
+
+  private getPlaylistByUid(uid: string): Playlist {
+    for (const playlist of this.playlists) {
+      if (uid == playlist.uid) {
+        return playlist;
+      }
+    }
+    return null;
   }
 
   private sortPlaylists() {

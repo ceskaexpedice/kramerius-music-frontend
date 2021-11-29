@@ -95,14 +95,13 @@
             Přehrát jako další
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item>
-            <mat-icon>library_add</mat-icon>
-            Přidat do knihovny
+        <button mat-menu-item (click)="onRenamePlaylist()">
+            <mat-icon>drive_file_rename_outline</mat-icon>
+            Přejmenovat playlist
         </button>
-        <button mat-menu-item>
-            <mat-icon>playlist_add</mat-icon>
-            Přidat do playlistu
+        <button mat-menu-item (click)="onRemovePlaylist()">
+            <mat-icon>delete</mat-icon>
+            Odstranit playlist
         </button>
-
     </ng-template>
 </mat-menu>

@@ -13,7 +13,6 @@ export class SidebarComponent implements OnInit {
   constructor(public auth: AuthService, public playlists: PlaylistService) { }
 
   ngOnInit() {
-
   }
 
 

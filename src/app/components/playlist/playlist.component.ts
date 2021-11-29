@@ -1,17 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SimpleDialogData } from 'src/app/dialogs/simple-dialog/simple-dialog';
 import { SimpleDialogComponent } from 'src/app/dialogs/simple-dialog/simple-dialog.component';
-import { Album } from 'src/app/models/album.model';
 import { Playlist } from 'src/app/models/playlist.model';
 import { Track } from 'src/app/models/track.model';
 import { ApiService } from 'src/app/services/api-service';
 import { DataService } from 'src/app/services/data-service';
 import { PlayerService } from 'src/app/services/player-service';
 import { PlaylistService } from 'src/app/services/playlist-service';
-
 
 @Component({
   templateUrl: './playlist.component.html',
@@ -25,9 +23,9 @@ export class PlaylistComponent implements OnInit, OnDestroy {
 
   private dataStatusSubscription: Subscription;
 
-
   constructor(private api: ApiService, 
               public player: PlayerService, 
+              private router: Router,
               private dialog: MatDialog,
               public data: DataService, 
               public playlists: PlaylistService,
@@ -86,5 +84,66 @@ export class PlaylistComponent implements OnInit, OnDestroy {
       return count + " skladeb";
     }
   }
+
+  onRenamePlaylist() {
+    const data: SimpleDialogData = {
+      title: "Zadejte nový název playlistu",
+      message: "",
+      textInput: {
+        label: "Název",
+        value: ""
+      },
+      btn1: {
+        label: 'Potvrdit',
+        value: 'approve',
+        color: 'primary'
+      },
+      btn2: {
+        label: 'Zrušit',
+        value: 'cancel',
+        color: 'light'
+      }
+    };
+    const dialogRef = this.dialog.open(SimpleDialogComponent, { data: data });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'approve') {
+        const value = data.textInput.value;
+        if (value) {
+          this.playlist.title = value;
+          this.playlists.renamePlaylist(this.playlist.uid, this.playlist.title);
+          this.api.editPlaylist(this.playlist).subscribe((playlist: Playlist) => {
+
+          });
+        }
+      }
+    });
+  }
+
+  onRemovePlaylist() {
+    const data: SimpleDialogData = {
+      title: "Opravdu chcete odstranit playlist?",
+      message: "",
+      btn1: {
+        label: 'Odstranit',
+        value: 'approve',
+        color: 'warn'
+      },
+      btn2: {
+        label: 'Zrušit',
+        value: 'cancel',
+        color: 'light'
+      }
+    };
+    const dialogRef = this.dialog.open(SimpleDialogComponent, { data: data });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'approve') {
+        this.api.removePlaylist(this.playlist).subscribe(() => {
+          this.playlists.removePlaylist(this.playlist.uid);
+          this.router.navigate(['/']);
+        });
+      }
+    });
+  }
+
 
 }

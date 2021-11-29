@@ -85,6 +85,16 @@ export class ApiService {
     return this.post(path, { title: playlist.title }).pipe(map((response: any)=> Playlist.fromJson(response)));
   }
 
+  editPlaylist(playlist: Playlist): Observable<Playlist> {
+    const path = `/playlists/${playlist.uid}`
+    return this.put(path, { title: playlist.title }).pipe(map((response: any)=> Playlist.fromJson(response)));
+  }
+
+  removePlaylist(playlist: Playlist): Observable<Playlist> {
+    const path = `/playlists/${playlist.uid}`
+    return this.delete(path).pipe(map((response: any)=> Playlist.fromJson(response)));
+  }
+
   getAlbums(): Observable<any> {
     const path = '/albums'
     return this.get(path);
