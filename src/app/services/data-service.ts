@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Album } from '../models/album.model';
 import { Track } from '../models/track.model';
-import { Unit } from '../models/unit.model';
 import { ApiService } from './api-service';
 
 @Injectable()
@@ -26,10 +25,7 @@ export class DataService {
   }
 
   init(input: any) {
-    console.log('input', input);
     this.albums = Album.fromJsonArray(input);
-    console.log('albums', this.albums);
-
     this.genres = [];
     this.artists = [];
     const genresMap: any = {};
@@ -66,9 +62,6 @@ export class DataService {
     this.artists.sort((a,b) => {
       return b.count - a.count;
     });
-
-    console.log('genres', this.genres);
-    console.log('artists', this.artists);
     this.ready = true;
     this.subjectStatus.next();
   }
@@ -155,7 +148,6 @@ export class DataService {
         return albums;
       }
     }
-    console.log('aaa', albums);
     return albums;
   }
 

@@ -17,6 +17,7 @@
     }
     .app-albums {
         overflow: hidden;
+        height: 212px;
         app-album-card {
             display: block;
             float: left;

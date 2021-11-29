@@ -3,14 +3,14 @@
 <div class="app-category" *ngFor="let category of data.getTopGenres()">
     <a class="app-category-name" [routerLink]="['/genre', encode(category.value)]">{{ category.value }}</a>
     <div class="app-albums">
-        <app-album-card *ngFor="let album of data.getAlbumsByCategory('genre', category.value, 9)" [album]="album"></app-album-card>
+        <app-album-card *ngFor="let album of data.getAlbumsByCategory('genre', category.value, 10)" [album]="album"></app-album-card>
     </div>
 </div>
 
 <div class="app-category" *ngFor="let category of data.getTopArtists()">
     <a class="app-category-name" [routerLink]="['/artist', encode(category.value)]">{{ category.value }}</a>
     <div class="app-albums">
-        <app-album-card *ngFor="let album of data.getAlbumsByCategory('artist', category.value, 9)" [album]="album"></app-album-card>
+        <app-album-card *ngFor="let album of data.getAlbumsByCategory('artist', category.value, 10)" [album]="album"></app-album-card>
     </div>
 </div>
 

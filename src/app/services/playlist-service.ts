@@ -11,7 +11,7 @@ export class PlaylistService {
     // this.playlists = [];
     this.api.getPlaylists().subscribe((playlists: Playlist[]) => {
       this.playlists = playlists;
-      console.log('pl', playlists);
+      // console.log('pl', playlists);
       this.sortPlaylists();
     });
   }  
