@@ -109,6 +109,14 @@ export class AlbumComponent implements OnInit, OnDestroy {
     this.player.enqueueTracks([track]);
   }
 
+  playAlbumNext() {
+    this.player.putTracksNext(this.tracks);
+  }
+
+  playTrackNext(track: Track) {
+    this.player.putTracksNext([track]);
+  }
+
   playAlbumShuffled() {
     this.player.setTracks(this.tracks);
     this.player.shuffle();

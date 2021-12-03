@@ -88,7 +88,7 @@
             <mat-icon>queue_music</mat-icon>
             Přidat do fronty
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="playTrackNext(track)">
             <mat-icon>playlist_play</mat-icon>
             Přehrát jako další
         </button>
@@ -136,7 +136,7 @@
             <mat-icon>queue_music</mat-icon>
             Přidat do fronty
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="playAlbumNext()">
             <mat-icon>playlist_play</mat-icon>
             Přehrát jako další
         </button>

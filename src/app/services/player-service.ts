@@ -33,6 +33,17 @@ export class PlayerService {
     }
   }
 
+  putTracksNext(tracks: Track[]) {
+    if (this.tracks.length == 0) {
+      this.addTracks(tracks);
+      this.loadFirst();
+      return;
+    }
+    const rest = this.tracks.splice(1, this.tracks.length - 1);
+    this.addTracks(tracks);
+    this.addTracks(rest);
+  }
+
   enqueueTracks(tracks: Track[]) {
     const empty = this.tracks.length == 0;
     this.addTracks(tracks);
