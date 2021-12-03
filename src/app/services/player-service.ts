@@ -27,11 +27,23 @@ export class PlayerService {
     this.tracks = [];
   }
 
-  setTracks(tracks: Track[]) {
-    this.tracks = [];
+  private addTracks(tracks: Track[]) {
     for (const track of tracks) {
       this.tracks.push(track);
     }
+  }
+
+  enqueueTracks(tracks: Track[]) {
+    const empty = this.tracks.length == 0;
+    this.addTracks(tracks);
+    if (empty) {
+      this.loadFirst();
+    }
+  }
+
+  setTracks(tracks: Track[]) {
+    this.tracks = [];
+    this.addTracks(tracks);
   }
 
   shuffle() {
@@ -57,7 +69,14 @@ export class PlayerService {
     this.changeTrack(0);
   }
 
-  private changeTrack(index: number) {
+  loadFirst() {
+    this.changeTrack(0, false);
+  }
+
+  private changeTrack(index: number, autoplay: boolean = true) {
+    if (index >= this.tracks.length) {
+      return;
+    }
     this.index = index;
     this.visible = true;
     this.track = this.tracks[index];
@@ -96,7 +115,9 @@ export class PlayerService {
     };
     this.audio.oncanplay = () => {
       this.canPlay = true;
-      this.play();
+      if (autoplay) {
+        this.play();
+      }
     };
     this.audio.onerror = (er: any) => {
       this.canPlay = false;

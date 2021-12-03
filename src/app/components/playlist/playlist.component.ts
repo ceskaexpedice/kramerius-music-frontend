@@ -76,6 +76,14 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     });
   }
 
+  enqueuePlaylist() {
+    this.player.enqueueTracks(this.playlist.tracks);
+  }
+
+  enqueueTrack(track: Track) {
+    this.player.enqueueTracks([track]);
+  }
+
   initPlaylist() {
     for (const track of this.playlist.tracks) {
       track.album = this.data.getAlbumByPid(track.albumPid);

@@ -84,7 +84,7 @@
 <mat-menu #trackMenu="matMenu" class="app-track-menu">
     <ng-template matMenuContent let-track="track">
   
-        <button mat-menu-item>
+        <button mat-menu-item (click)="enqueueTrack(track)">
             <mat-icon>queue_music</mat-icon>
             Přidat do fronty
         </button>
@@ -132,7 +132,7 @@
             <mat-icon>shuffle</mat-icon>
             Přehrát náhodně
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="enqueueAlbum()">
             <mat-icon>queue_music</mat-icon>
             Přidat do fronty
         </button>
