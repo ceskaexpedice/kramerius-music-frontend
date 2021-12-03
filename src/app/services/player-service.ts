@@ -28,9 +28,21 @@ export class PlayerService {
   }
 
   setTracks(tracks: Track[]) {
-    this.tracks = tracks;
+    this.tracks = [];
+    for (const track of tracks) {
+      this.tracks.push(track);
+    }
   }
 
+  shuffle() {
+    if (!this.tracks) {
+      return;
+    }
+    for (let i = this.tracks.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [this.tracks[i], this.tracks[j]] = [this.tracks[j], this.tracks[i]];
+    }
+  }
 
   playTrack(track: Track) {
     let index = this.tracks.indexOf(track);

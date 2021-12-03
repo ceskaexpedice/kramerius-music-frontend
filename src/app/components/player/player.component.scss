@@ -7,7 +7,7 @@
         height: calc(100vh - 90px);
         transition: height 0.2s ease-out;
         background: #080808;
-        overflow: hidden;
+        overflow: auto;
         // border-top: 2px solid #3a3a3f;
         &.app-hidden {
             height: 0px;

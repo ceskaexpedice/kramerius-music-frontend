@@ -101,6 +101,12 @@ export class AlbumComponent implements OnInit, OnDestroy {
     this.player.playFirst();
   }
 
+  playAlbumShuffled() {
+    this.player.setTracks(this.tracks);
+    this.player.shuffle();
+    this.player.playFirst();
+  }
+
 
   onAddToPlaylist(playlist: Playlist, track: Track) {
     this.api.addTrackToPlaylist(playlist, track).subscribe(() => {

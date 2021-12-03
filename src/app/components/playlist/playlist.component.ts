@@ -51,6 +51,12 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     this.player.playFirst();
   }
 
+  playPlaylistShuffled() {
+    this.player.setTracks(this.playlist.tracks);
+    this.player.shuffle();
+    this.player.playFirst();
+  }
+
   playTrack(track: Track) {
     if (this.player.isActive(track)) {
       if (this.player.playing) {

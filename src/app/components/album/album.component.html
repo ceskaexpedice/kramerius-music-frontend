@@ -128,7 +128,7 @@
 <mat-menu #albumMenu="matMenu" class="app-album-menu">
     <ng-template matMenuContent let-track="track">
   
-        <button mat-menu-item>
+        <button mat-menu-item (click)="playAlbumShuffled()">
             <mat-icon>shuffle</mat-icon>
             Přehrát náhodně
         </button>
