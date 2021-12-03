@@ -72,7 +72,11 @@
             <mat-icon>library_add</mat-icon>
             Přidat do knihovny
         </button>
-
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="onRemoveTrackFromPlaylist(track)">
+            <mat-icon>delete</mat-icon>
+            Odebrat z playlistu
+        </button>
 
     </ng-template>
 </mat-menu>

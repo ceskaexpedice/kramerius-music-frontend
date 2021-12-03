@@ -80,6 +80,11 @@ export class ApiService {
     return this.post(path);
   }
 
+  removeTrackFromPlaylist(playlist: Playlist, track: Track): Observable<any> {
+    const path = `/playlists/${playlist.uid}/tracks/${track.pid}`
+    return this.delete(path);
+  }
+
   createPlaylist(playlist: Playlist): Observable<Playlist> {
     const path = `/playlists`
     return this.post(path, { title: playlist.title }).pipe(map((response: any)=> Playlist.fromJson(response)));

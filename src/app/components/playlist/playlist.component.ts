@@ -64,6 +64,12 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     }
   }
 
+  onRemoveTrackFromPlaylist(track: Track) {
+    this.api.removeTrackFromPlaylist(this.playlist, track).subscribe(() => {
+      this.playlist.tracks.splice(this.playlist.tracks.indexOf(track), 1);
+    });
+  }
+
   initPlaylist() {
     for (const track of this.playlist.tracks) {
       track.album = this.data.getAlbumByPid(track.albumPid);
