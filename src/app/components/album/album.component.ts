@@ -9,6 +9,7 @@ import { Playlist } from 'src/app/models/playlist.model';
 import { Track } from 'src/app/models/track.model';
 import { ApiService } from 'src/app/services/api-service';
 import { DataService } from 'src/app/services/data-service';
+import { LibraryService } from 'src/app/services/library-service';
 import { PlayerService } from 'src/app/services/player-service';
 import { PlaylistService } from 'src/app/services/playlist-service';
 
@@ -31,6 +32,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   constructor(private api: ApiService, 
               public player: PlayerService, 
+              public library: LibraryService,
               private dialog: MatDialog,
               public data: DataService, 
               public playlists: PlaylistService,

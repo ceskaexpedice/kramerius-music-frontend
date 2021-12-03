@@ -1,0 +1,25 @@
+.app-library-albums {
+    padding: 0px 10px 20px;
+    .app-library-name {
+        margin-left: 15px;
+        font-size: 20px;
+        color: #ccc;
+        font-weight: 500;
+        margin-bottom: 10px;
+        padding-top: 30px;
+        line-height: 20px;
+        display: flex;
+        mat-icon {
+            margin: 0 10px;
+            font-size: 20px;
+        }
+    }
+    .app-albums {
+        overflow: hidden;
+        app-album-card {
+            display: block;
+            float: left;
+            margin: 5px;
+        }
+    }
+}

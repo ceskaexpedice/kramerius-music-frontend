@@ -7,7 +7,7 @@
         <img [src]="getImage()">
     </div>
     <div class="app-album-title-wrapper">
-        <div class="app-album-title">{{ album.title }}</div>
+    <div class="app-album-title">{{ album.title }}</div>
     </div>
     <div class="app-album-bottom">
         <a [routerLink]="['/artist', encode(album.artist())]" class="app-album-artist">{{ album.artist() }}</a>
@@ -25,9 +25,13 @@
             <mat-icon>play_arrow</mat-icon>
             Přehrát
         </div>
-        <div class="app-button app-button-like" (click)="playAlbum()">
+        <div class="app-button app-button-like" *ngIf="!library.isAlbumInLibrary(album)" (click)="library.addAlbumToLibrary(album)">
             <mat-icon>library_add</mat-icon>
             Přidat do knihovny
+        </div>
+        <div class="app-button app-button-like" *ngIf="library.isAlbumInLibrary(album)" (click)="library.removeAlbumFromLibrary(album)">
+            <mat-icon>library_add_check</mat-icon>
+            Odebrat z knihovny
         </div>
         <mat-icon class="app-more" [matMenuTriggerFor]="albumMenu">more_vert</mat-icon>
 

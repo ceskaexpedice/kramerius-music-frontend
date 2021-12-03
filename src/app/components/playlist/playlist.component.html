@@ -11,10 +11,6 @@
             <mat-icon>play_arrow</mat-icon>
             Přehrát
         </div>
-        <div class="app-button app-button-like" (click)="playPlaylist()">
-            <mat-icon>library_add</mat-icon>
-            Přidat do knihovny
-        </div>
         <mat-icon class="app-more" [matMenuTriggerFor]="playlistMenu">more_vert</mat-icon>
 
     </div>
@@ -67,10 +63,9 @@
             <mat-icon>playlist_play</mat-icon>
             Přehrát jako další
         </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>
-            <mat-icon>library_add</mat-icon>
-            Přidat do knihovny
+        <button mat-menu-item (click)="goToAlbum(track)">
+            <mat-icon>album</mat-icon>
+            Přejít na album
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="onRemoveTrackFromPlaylist(track)">

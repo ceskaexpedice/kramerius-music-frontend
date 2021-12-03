@@ -30,6 +30,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { GenresComponent } from './components/genres/genres.component';
 import { ArtistsComponent } from './components/artists/artists.component';
+import { LibraryService } from './services/library-service';
+import { AlbumsLibraryComponent } from './components/library/albums-library/albums-library.component';
+import { ArtistsLibraryComponent } from './components/library/artists-library/artists-library.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { ArtistsComponent } from './components/artists/artists.component';
     SidebarComponent,
     PlaylistComponent,
     GenresComponent,
-    ArtistsComponent
+    ArtistsComponent,
+    AlbumsLibraryComponent,
+    ArtistsLibraryComponent
   ],
   imports: [
     // CommonModule,
@@ -75,7 +80,8 @@ import { ArtistsComponent } from './components/artists/artists.component';
     PlayerService,
     PlaylistService,
     AuthService,
-    LocalStorageService
+    LocalStorageService,
+    LibraryService
   ],
   entryComponents: [
     SimpleDialogComponent

@@ -1,6 +1,29 @@
 <div class="app-artist" *ngIf="data.ready && artist">
 
-    <div class="app-artist-name">{{ artist }}</div>
+    <div class="app-artist-header">
+        <div class="app-artist-title">{{ artist }}</div>
+        <div class="app-artist-bottom">
+            <span>{{ albumCountText(data.getAlbumsByCategory('artist', artist).length) }}</span>
+        </div>
+        <div class="app-actions">
+
+
+            <div class="app-button app-button-like" *ngIf="!library.isArtistInLibrary(artist)" (click)="library.addArtistToLibrary(artist)">
+                <mat-icon>library_add</mat-icon>
+                Přidat do knihovny
+            </div>
+            <div class="app-button app-button-like" *ngIf="library.isArtistInLibrary(artist)" (click)="library.removeArtistFromLibrary(artist)">
+                <mat-icon>library_add_check</mat-icon>
+                Odebrat z knihovny
+            </div>
+
+
+    
+        </div>
+    </div>
+
+
+
 
     <div class="app-albums">
         <app-album-card *ngFor="let album of data.getAlbumsByCategory('artist', artist)" [album]="album"></app-album-card>

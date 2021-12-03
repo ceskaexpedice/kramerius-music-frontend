@@ -1,13 +1,73 @@
+@import './src/variables.scss';
+
 .app-artist {
-    padding: 0px 10px 20px;
-    .app-artist-name {
-        margin-left: 15px;
-        font-size: 25px;
-        color: #ccc;
-        font-weight: 500;
-        margin-bottom: 10px;
-        padding-top: 30px;
+    padding: 5px 10px 20px;
+
+
+    .app-artist-header {
+        padding: 20px;
+        overflow: hidden;
+        .app-artist-title {
+            font-size: 24px;
+            color: #ddd;
+            display: inline-block;
+            align-self: flex-end;
+            line-height: 32px;
+        }        
+        .app-artist-bottom {
+            overflow: hidden;
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 10px;
+            height: 14px;
+            line-height: 14px;
+            .app-divider {
+                float: left;
+                height: 4px;
+                width: 4px;
+                margin: 5px 8px;
+                border-radius: 50%;
+                background: #999;
+            }
+        }
+        .app-actions {
+            height: 46px;
+            overflow: hidden;
+            padding-top: 12px;
+            display: flex;
+            .app-button {
+                user-select: none;
+                cursor: pointer;
+                padding: 5px 12px 5px 8px;
+                font-size: 14px;
+                border-radius: 4px;
+                background: #111;
+                display: inline-block;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                margin-right: 14px;
+                border: 1px solid transparent;
+                mat-icon {
+                    margin-right: 6px;
+                }
+                &.app-button-like {
+                    color: $app-primary-color;
+                    border-color: $app-primary-color;
+                    &:hover {
+                        color: $app-primary-color-hl;
+                        border-color: $app-primary-color-hl;
+                    }
+                    mat-icon {
+                        font-size: 20px;
+                        line-height: 24px;
+                    }
+                }
+            }
+        }
     }
+
+
     .app-albums {
         overflow: hidden;
         app-album-card {

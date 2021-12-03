@@ -98,6 +98,10 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     }
   }
 
+  goToAlbum(track: Track) {
+    this.router.navigate(['/', 'album', track.album.pid]);
+  }
+
   ngOnDestroy(): void {
     this.dataStatusSubscription.unsubscribe();
   }

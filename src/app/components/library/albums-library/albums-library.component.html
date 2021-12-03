@@ -1,0 +1,13 @@
+<div class="app-library-albums">
+
+    <div class="app-library-name">
+        <span style="color: #888">Knihovna</span> 
+        <mat-icon>chevron_right</mat-icon>
+        Alba
+    </div>
+
+    <div class="app-albums">
+        <app-album-card *ngFor="let album of library.getAlbums()" [album]="album"></app-album-card>
+    </div>
+
+</div>

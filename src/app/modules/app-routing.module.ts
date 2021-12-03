@@ -8,6 +8,8 @@ import { ArtistsComponent } from '../components/artists/artists.component';
 import { GenreComponent } from '../components/genre/genre.component';
 import { GenresComponent } from '../components/genres/genres.component';
 import { HomeComponent } from '../components/home/home.component';
+import { AlbumsLibraryComponent } from '../components/library/albums-library/albums-library.component';
+import { ArtistsLibraryComponent } from '../components/library/artists-library/artists-library.component';
 import { PlaylistComponent } from '../components/playlist/playlist.component';
 import { SearchComponent } from '../components/search/search.component';
 
@@ -22,6 +24,8 @@ const routes: Routes = [
 
   { path: 'playlist/:uid', component: PlaylistComponent },
 
+  { path: 'library/albums', component: AlbumsLibraryComponent },
+  { path: 'library/artists', component: ArtistsLibraryComponent },
 
   { path: 'login', component: LoginComponent },
   { path: 'omniauth', component: OmniauthComponent }

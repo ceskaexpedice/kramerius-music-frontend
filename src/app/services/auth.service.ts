@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { AngularTokenService } from 'angular-token';
 import { PlaylistService } from './playlist-service';
+import { LibraryService } from './library-service';
 
 @Injectable()
 export class AuthService {
 
   user: User;
 
-  constructor(private tokenService: AngularTokenService, private playlists: PlaylistService) {
+  constructor(
+    private tokenService: AngularTokenService, 
+    private library: LibraryService,
+    private playlists: PlaylistService) {
   }
 
   processOAuthCallback(callback: (success: boolean) => void) {
@@ -66,6 +70,7 @@ export class AuthService {
     }
     this.user = User.fromJson(userData);
     this.playlists.reload();
+    this.library.load();
   }
 
 }

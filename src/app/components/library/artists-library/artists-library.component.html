@@ -1,0 +1,11 @@
+<div class="app-library-artists">
+
+    <div class="app-library-name">
+        <span style="color: #888">Knihovna</span> 
+        <mat-icon>chevron_right</mat-icon>
+        Umělci
+    </div>
+
+    <a class="app-item" *ngFor="let artist of library.getArtists()" [routerLink]="['/artist', encode(artist)]">{{ artist }}</a>
+ 
+</div>

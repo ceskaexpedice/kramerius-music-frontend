@@ -37,10 +37,8 @@
 
     <ng-container *ngIf="auth.isLoggedIn()">
       <div class="app-label">Knihovna</div>
-      <a routerLink="/search" class="app-action">Alba</a>
-      <a routerLink="/search" class="app-action">Skladby</a>
-      <a routerLink="/search" class="app-action">Umělci</a>
-
+      <a routerLink="/library/albums" class="app-action">Alba</a>
+      <a routerLink="/library/artists" class="app-action">Umělci</a>
 
       <div class="app-label">Playlisty</div>
       <a [routerLink]="['/', 'playlist', playlist.uid]" class="app-action" *ngFor="let playlist of playlists.playlists">

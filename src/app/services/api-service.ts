@@ -105,6 +105,36 @@ export class ApiService {
     return this.get(path);
   }
 
+  getLibraryAlbums(): Observable<string[]> {
+    const path = `/library/albums`
+    return this.get(path).pipe(map((response: any)=> response as string[]));
+  }
+
+  addAlbumToLibrary(album: Album): Observable<any> {
+    const path = `/library/albums/${album.pid}`
+    return this.post(path);
+  }
+
+  removeAlbumFromLibrary(album: Album): Observable<any> {
+    const path = `/library/albums/${album.pid}`
+    return this.delete(path);
+  }
+
+  getLibraryArtists(): Observable<string[]> {
+    const path = `/library/artists`
+    return this.get(path).pipe(map((response: any)=> response as string[]));
+  }
+
+  addArtistToLibrary(name: string): Observable<any> {
+    const path = `/library/artists/${name}`
+    return this.post(path);
+  }
+
+  removeArtistFromLibrary(name: string): Observable<any> {
+    const path = `/library/artists/${name}`
+    return this.delete(path);
+  }
+
   getTracks(album: Album): Observable<any> {
     const path = `/albums/${album.pid}/tracks`
     return this.get(path);

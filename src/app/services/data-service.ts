@@ -12,11 +12,11 @@ export class DataService {
 
   ready = false;
   albums: Album[];
+  albumsMap: {[ key: string]: Album } = {};
   genres: Category[];
   artists: Category[];
 
   private subjectStatus = new Subject<any>();
-  subjectTransactions: any;
 
   constructor(private api: ApiService) {
     this.api.getAlbums().subscribe((result) => {
@@ -26,6 +26,9 @@ export class DataService {
 
   init(input: any) {
     this.albums = Album.fromJsonArray(input);
+    for (const album of this.albums) {
+      this.albumsMap[album.pid] = album;
+    }
     this.genres = [];
     this.artists = [];
     const genresMap: any = {};
@@ -229,12 +232,7 @@ export class DataService {
     if (!this.albums) {
       return null;
     }
-    for (const album of this.albums) {
-      if (album.pid == pid) {
-        return album;
-      }
-    }
-    return null;
+    return this.albumsMap[pid];
   }
   
   watchStatus(): Observable<any> {

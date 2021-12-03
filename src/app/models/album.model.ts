@@ -8,8 +8,10 @@ export class Album {
   isPrivate: boolean;
   date: string;
   source: string;
+  inLibrary: boolean;
 
   constructor() {
+    this.inLibrary = false;
   }
 
 
