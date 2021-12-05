@@ -8,7 +8,7 @@
         <div class="app-actions">
 
 
-            <div class="app-button app-button-like" *ngIf="!library.isArtistInLibrary(artist)" (click)="library.addArtistToLibrary(artist)">
+            <div class="app-button app-button-like" *ngIf="!library.isArtistInLibrary(artist)" (click)="addArtistToLibrary()">
                 <mat-icon>library_add</mat-icon>
                 Přidat do knihovny
             </div>

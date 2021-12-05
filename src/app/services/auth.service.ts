@@ -3,6 +3,10 @@ import { User } from '../models/user.model';
 import { AngularTokenService } from 'angular-token';
 import { PlaylistService } from './playlist-service';
 import { LibraryService } from './library-service';
+import { SimpleDialogData } from '../dialogs/simple-dialog/simple-dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { SimpleDialogComponent } from '../dialogs/simple-dialog/simple-dialog.component';
 
 @Injectable()
 export class AuthService {
@@ -11,6 +15,8 @@ export class AuthService {
 
   constructor(
     private tokenService: AngularTokenService, 
+    private dialog: MatDialog,
+    private router: Router,
     private library: LibraryService,
     private playlists: PlaylistService) {
   }
@@ -72,5 +78,31 @@ export class AuthService {
     this.playlists.reload();
     this.library.load();
   }
+
+
+  showSigninRequiredDialog(message: string = "") {
+    const data: SimpleDialogData = {
+      title: "Je vyžadováno přihlášení",
+      message: message,
+      btn1: {
+        label: 'Přihlásit',
+        value: 'login',
+        color: 'primary'
+      },
+      btn2: {
+        label: 'Zrušit',
+        value: 'cancel',
+        color: 'light'
+      }
+    };
+    const dialogRef = this.dialog.open(SimpleDialogComponent, { data: data });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'login') {
+        this.router.navigate(['/', 'login']);
+      }
+    });
+  }
+
+
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Album } from '../models/album.model';
 import { ApiService } from './api-service';
+import { AuthService } from './auth.service';
 import { DataService } from './data-service';
 
 @Injectable()

@@ -25,7 +25,7 @@
             <mat-icon>play_arrow</mat-icon>
             Přehrát
         </div>
-        <div class="app-button app-button-like" *ngIf="!library.isAlbumInLibrary(album)" (click)="library.addAlbumToLibrary(album)">
+        <div class="app-button app-button-like" *ngIf="!library.isAlbumInLibrary(album)" (click)="addAlbumToLibrary()">
             <mat-icon>library_add</mat-icon>
             Přidat do knihovny
         </div>

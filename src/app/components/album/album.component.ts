@@ -8,6 +8,7 @@ import { Album } from 'src/app/models/album.model';
 import { Playlist } from 'src/app/models/playlist.model';
 import { Track } from 'src/app/models/track.model';
 import { ApiService } from 'src/app/services/api-service';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data-service';
 import { LibraryService } from 'src/app/services/library-service';
 import { PlayerService } from 'src/app/services/player-service';
@@ -35,6 +36,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
               public library: LibraryService,
               private dialog: MatDialog,
               public data: DataService, 
+              private auth: AuthService,
               public playlists: PlaylistService,
               private route: ActivatedRoute) { }
 
@@ -48,6 +50,15 @@ export class AlbumComponent implements OnInit, OnDestroy {
         this.initAlbum(this.data.getAlbumByPid(this.pid));
       });
     });
+  }
+
+
+  addAlbumToLibrary() {
+    if (!this.auth.isLoggedIn()) {
+      this.auth.showSigninRequiredDialog('Pro používání knihovny můsíte být přihlášení. Chcete se přihláset?');
+      return;
+    }
+    this.library.addAlbumToLibrary(this.album);
   }
 
 
@@ -133,6 +144,10 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   onAddToNewPlaylist(track: Track) {
+    if (!this.auth.isLoggedIn()) {
+      this.auth.showSigninRequiredDialog('Pro používání playlistů můsíte být přihlášení. Chcete se přihláset?');
+      return;
+    }
     const data: SimpleDialogData = {
       title: "Zadejte název nového playlistu",
       message: "",
