@@ -48,7 +48,12 @@
             <div class="app-thumb" [style.background-image]="thumb(track.album)"></div>
             <mat-icon class="app-icon-play" (click)="playTrack($event, track)">play_arrow</mat-icon>
           </div>
-          <div class="app-title">{{ track.title }}
+          <div class="app-title">
+            <span>{{ track.title }}</span>
+            <ng-container *ngIf="track.unit">
+              <span class="app-divider"></span>
+              <span class="app-subtitle">{{ track.unit }}</span>
+            </ng-container>
             <mat-icon class="app-icon-lock" *ngIf="track.isPrivate">lock</mat-icon>
           </div>
 

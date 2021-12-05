@@ -11,11 +11,6 @@ export class Track {
   album: Album;
   unit: string;
 
-
-  // unitPid: string;
-  // unit: Unit;
-
-
   constructor() {
   }
 
