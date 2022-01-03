@@ -6,7 +6,7 @@ Modul umožňuje výhledávat a procházet alba, umělce, žánry a sklady. Pře
 Přehrávač zobrazuje další informace o objektu načtené prostřednictvím API Krameria. 
 Součástí systému je [serverová vrstva](https://github.com/ceskaexpedice/kramerius-music-backend), která sjednocuje data z jednotlivých Krameriů a ukládá uživatelské informace - playlisty a knihovnu.
 
-Modul přehrávače je volně dostupný pod licenci GNU GPL (jako systém Kramerius) Zvukové dokumenty budou dále podporovány v rámci vývoje Krameria
+Modul přehrávače je volně dostupný pod licenci GNU GPL v3. http://www.gnu.org/licenses/gpl-3.0.en.htm (jako systém Kramerius) Zvukové dokumenty budou dále podporovány v rámci vývoje Krameria
 Software releases: 
 BackEnd : Release v.1
 FrontEnd : Release v.1
