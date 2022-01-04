@@ -135,6 +135,11 @@ export class ApiService {
     return this.delete(path);
   }
 
+  getTrackForEmbed(pid: string): Observable<any> {
+    const path = `/embed/${pid}`
+    return this.get(path);
+  }
+
   getTracks(album: Album): Observable<any> {
     const path = `/albums/${album.pid}/tracks`
     return this.get(path);

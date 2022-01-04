@@ -5,6 +5,7 @@ import { OmniauthComponent } from '../components/account/omniauth/omniauth.compo
 import { AlbumComponent } from '../components/album/album.component';
 import { ArtistComponent } from '../components/artist/artist.component';
 import { ArtistsComponent } from '../components/artists/artists.component';
+import { EmbedComponent } from '../components/embed/embed.component';
 import { GenreComponent } from '../components/genre/genre.component';
 import { GenresComponent } from '../components/genres/genres.component';
 import { HomeComponent } from '../components/home/home.component';
@@ -26,6 +27,8 @@ const routes: Routes = [
 
   { path: 'library/albums', component: AlbumsLibraryComponent },
   { path: 'library/artists', component: ArtistsLibraryComponent },
+
+  { path: 'embed/:pid', component: EmbedComponent },
 
   { path: 'login', component: LoginComponent },
   { path: 'omniauth', component: OmniauthComponent }

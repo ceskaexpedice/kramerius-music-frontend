@@ -1,5 +1,7 @@
-<div class="app-content-wrapper" [class.app-player-visible]="player.visible">
-  <!-- <app-navbar></app-navbar> -->
+<div class="app-embed" *ngIf="embed">
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="!embed" class="app-content-wrapper" [class.app-player-visible]="player.visible">
   <app-sidebar [class.app-player-visible]="player.visible"></app-sidebar>
   <div class="app-content">
     <router-outlet></router-outlet>

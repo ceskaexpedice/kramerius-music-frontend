@@ -33,6 +33,7 @@ import { ArtistsComponent } from './components/artists/artists.component';
 import { LibraryService } from './services/library-service';
 import { AlbumsLibraryComponent } from './components/library/albums-library/albums-library.component';
 import { ArtistsLibraryComponent } from './components/library/artists-library/artists-library.component';
+import { EmbedComponent } from './components/embed/embed.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ArtistsLibraryComponent } from './components/library/artists-library/ar
     GenresComponent,
     ArtistsComponent,
     AlbumsLibraryComponent,
-    ArtistsLibraryComponent
+    ArtistsLibraryComponent,
+    EmbedComponent
   ],
   imports: [
     // CommonModule,

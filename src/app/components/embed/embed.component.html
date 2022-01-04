@@ -1,0 +1,45 @@
+<div class="app-embed" *ngIf="ready">
+
+    <div class="app-player">
+
+        <div #progressContainer class="app-progress-container" (click)="onProgressClick($event)">
+            <div class="app-progress" [style.width]="(player.progress * 100) + '%'"></div>
+        </div>
+    
+            <div class="app-player-left">
+                <ng-container *ngIf="player.track">
+                    <div class="app-player-image">
+                        <img [src]="player.getAlbumImage()">
+                    </div>
+                    <div class="app-player-track">{{ player.track.title }}</div>
+                    <div class="app-player-album">
+                        <a class="app-album-title" [routerLink]="['/album', player.track.album.pid]">{{ player.track.album.title }}</a>
+                </div>
+                    <div class="app-player-album">
+                        <a class="app-album-artist" [routerLink]="['/artist', encode(player.track.album.artist())]">{{ player.track.album.artist() }}</a>
+                        <ng-container *ngIf="player.track.album.date">
+                            <div class="app-divider"></div>
+                            <div class="app-album-date">{{ player.track.album.date }}</div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+    
+            <div class="app-player-right">
+                <div class="app-player-buttons">
+                    <mat-icon *ngIf="!player.playing" (click)="player.play()" class="app-player-play">play_circle</mat-icon>
+                    <mat-icon *ngIf="player.playing" (click)="player.pause()" class="app-player-play">pause_circle</mat-icon>
+                </div>
+                <div class="app-player-duration" *ngIf="!player.error && player.trackDurationText">
+                    {{ player.trackPositionText }} / {{ player.trackDurationText }}
+                </div>
+                <div class="app-player-error" *ngIf="player.error">
+                    {{ player.error }}
+                </div>
+            </div>
+
+        </div>
+
+
+
+</div>

@@ -13,25 +13,32 @@ declare var gtag: any;
 
 export class AppComponent implements OnInit {
 
+  embed = false;
+
   constructor(public player: PlayerService, 
     private auth: AuthService, 
     private router: Router,
     private tokenService: AngularTokenService) { 
 
-      this.router.events.forEach(item => {
-        if (item instanceof NavigationEnd) {
-          gtag('config', 'G-41TKB96TQX', {'page_path': item.urlAfterRedirects });
-        }
-      });
+      // this.router.events.forEach(item => {
+      //   if (item instanceof NavigationEnd) {
+      //     gtag('config', 'G-41TKB96TQX', {'page_path': item.urlAfterRedirects });
+      //   }
+      // });
   
-    }
-    
-  ngOnInit() {
+  }
 
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        gtag('config', 'G-41TKB96TQX', {'page_path': event.urlAfterRedirects });
+        this.embed = event.url.startsWith('/embed/');
+      }
+    });
     this.tokenService.validateToken().subscribe(
       () => {
         this.auth.afterLogin();
-      })
+    });
   }
 
 }
