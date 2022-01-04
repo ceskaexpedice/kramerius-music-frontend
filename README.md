@@ -3,7 +3,7 @@
 Jedná se o univerzální přehrávací modul - software, který je zakomponovaný prostřednictvím API do systému Kramerius. Samotný přehrávač je nezávislou komponentou. Modul přehrává fyzický soubor v běžných komerčních formátech a standardech (mp3, mpeg-4 audio, wav), ke kterému má přístup, a také přehrává streamovaný obsah.
 Modul umožňuje výhledávat a procházet alba, umělce, žánry a sklady. Přehrávat skladby přes integrovaný přehrávač, vytvářet frontu skladeb a po přihlášení si mohou uživatelé vytvářet vlastní playlisty a přidávat alba a umělce do své knihovny.
 
-Dokumentace/manuál je k dispozici prostřednictvím wiki https://github.com/ceskaexpedice/kramerius-music-frontend/wiki/Zvukov%C3%BD-p%C5%99ehr%C3%A1va%C4%8D-pro-Kramerius
+Dokumentace/manuál je k dispozici prostřednictvím wiki https://github.com/ceskaexpedice/kramerius-music-frontend/wiki
 
 Přehrávač zobrazuje další informace o objektu načtené prostřednictvím API Krameria. 
 Součástí systému je [serverová vrstva](https://github.com/ceskaexpedice/kramerius-music-backend), která sjednocuje data z jednotlivých Krameriů a ukládá uživatelské informace - playlisty a knihovnu.
