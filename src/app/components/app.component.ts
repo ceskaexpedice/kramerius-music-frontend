@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { AngularTokenService } from 'angular-token';
-import { AuthService } from '../services/auth.service';
 import { PlayerService } from '../services/player-service';
 declare var gtag: any;
 
@@ -13,19 +11,10 @@ declare var gtag: any;
 
 export class AppComponent implements OnInit {
 
-  embed = false;
+  embed = true;
 
   constructor(public player: PlayerService, 
-    private auth: AuthService, 
-    private router: Router,
-    private tokenService: AngularTokenService) { 
-
-      // this.router.events.forEach(item => {
-      //   if (item instanceof NavigationEnd) {
-      //     gtag('config', 'G-41TKB96TQX', {'page_path': item.urlAfterRedirects });
-      //   }
-      // });
-  
+    private router: Router) { 
   }
 
   ngOnInit() {
@@ -34,10 +23,6 @@ export class AppComponent implements OnInit {
         gtag('config', 'G-41TKB96TQX', {'page_path': event.urlAfterRedirects });
         this.embed = event.url.startsWith('/embed/');
       }
-    });
-    this.tokenService.validateToken().subscribe(
-      () => {
-        this.auth.afterLogin();
     });
   }
 

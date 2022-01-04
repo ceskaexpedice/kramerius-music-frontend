@@ -1,12 +1,5 @@
 <div class="app-home" *ngIf="data.ready">
 
-
-
-    <iframe width="100%" height="90px" scrolling="no" frameborder="no" src="http://localhost:4200/embed/uuid:f9f491a6-748f-4846-ae6b-760095a32623"></iframe>
-
-    <iframe width="100%" height="90px" scrolling="no" frameborder="no" src="http://localhost:4200/embed/uuid:aa2762da-7ec8-451c-a244-56ce8ae0cf74"></iframe>
-
-
 <div class="app-category" *ngFor="let category of data.getTopGenres()">
     <a class="app-category-name" [routerLink]="['/genre', encode(category.value)]">{{ category.value }}</a>
     <div class="app-albums">

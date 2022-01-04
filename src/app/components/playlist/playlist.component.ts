@@ -103,7 +103,9 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dataStatusSubscription.unsubscribe();
+    if (this.dataStatusSubscription) {
+      this.dataStatusSubscription.unsubscribe();
+    }
   }
 
   trackCountText(): string {

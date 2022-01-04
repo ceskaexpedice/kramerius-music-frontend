@@ -19,12 +19,16 @@ export class DataService {
   private subjectStatus = new Subject<any>();
 
   constructor(private api: ApiService) {
+  }
+
+  init() {
+    console.log('init data');
     this.api.getAlbums().subscribe((result) => {
-      this.init(result);
+      this.set(result);
     });
   }
 
-  init(input: any) {
+  set(input: any) {
     this.albums = Album.fromJsonArray(input);
     for (const album of this.albums) {
       this.albumsMap[album.pid] = album;
