@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from '../components/about/about.component';
 import { LoginComponent } from '../components/account/login/login.component';
 import { OmniauthComponent } from '../components/account/omniauth/omniauth.component';
 import { AlbumComponent } from '../components/album/album.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'genres', component: GenresComponent },
   { path: 'artists', component: ArtistsComponent },
+  { path: 'about', component: AboutComponent },
 
   { path: 'playlist/:uid', component: PlaylistComponent },
 

@@ -1,0 +1,13 @@
+@import './src/variables.scss';
+
+.app-about {
+    padding: 70px 10px 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 15px;
+    color: #ccc;
+    line-height: 24px;
+    a {
+        color: $app-primary-color;
+    }
+}

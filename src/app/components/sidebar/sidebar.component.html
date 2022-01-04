@@ -19,15 +19,15 @@
 
 
     <a routerLink="/" class="app-action app-main-action2">
-      <!-- <mat-icon>home</mat-icon> -->
       Domů
     </a>
     <a routerLink="/search" class="app-action app-main-action2">
-      <!-- <mat-icon>search</mat-icon> -->
       Hledat
     </a>
+    <a routerLink="/about" class="app-action app-main-action2">
+      O portálu
+    </a>
     <a *ngIf="!auth.isLoggedIn()" routerLink="/login" class="app-action app-main-action2">
-      <!-- <mat-icon>login</mat-icon> -->
       Přihlásit
     </a>
 
