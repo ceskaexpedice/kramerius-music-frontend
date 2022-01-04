@@ -1,4 +1,4 @@
-### Klient pro zvukové dokumenty publikované v systému Kramerius.
+### Modul Zvukový přehrávač pro Kramerius
 
 Jedná se o univerzální přehrávací modul - software, který je zakomponovaný prostřednictvím API do systému Kramerius. Samotný přehrávač je nezávislou komponentou. Modul přehrává fyzický soubor v běžných komerčních formátech a standardech (mp3, mpeg-4 audio, wav), ke kterému má přístup, a také přehrává streamovaný obsah.
 Modul umožňuje výhledávat a procházet alba, umělce, žánry a sklady. Přehrávat skladby přes integrovaný přehrávač, vytvářet frontu skladeb a po přihlášení si mohou uživatelé vytvářet vlastní playlisty a přidávat alba a umělce do své knihovny.
