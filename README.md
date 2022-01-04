@@ -11,6 +11,8 @@ Software releases:
 BackEnd : Release v.1
 FrontEnd : Release v.1
 
+#### Vytvoření modulu zvukový přehrávač pro Kramerius bylo podpořeno z programu MK ČR NAKI v rámci realizace projektu „Nový fonograf: naslouchejme zvuku historie“ (DG18P02OVV032).
+
 ### Portál Kramerius Music
 Vyvinutý software je aplikován na portále Kramerius-music http://music.kramerius.org/ , kde je možné funkcionalitu testovat na reálných datech připojených digitálních knihoven  systému [Kramerius](https://github.com/ceskaexpedice/kramerius)
 
